@@ -3,17 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://noofbiz.github.io/post/helloworld/</loc>
+    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://noofbiz.github.io/tags/first/</loc>
+    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/tags/intro/</loc>
+    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/categories/introductions/</loc>
+    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/</loc>
+    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/post/</loc>
+    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://noofbiz.github.io/tags/</loc>
+    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
     <priority>0</priority>
   </url>
   
