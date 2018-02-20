@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Jerry Caligiure</title>
+
+  
+  
+  <meta name="author" content="Jerry Caligiure" />
+  <meta name="description" content="Testing Systems for engo
+
+" />
+
+
+
+<meta name="generator" content="Hugo 0.37-DEV" />
+
+
+<link rel="canonical" href="https://noofbiz.github.io/post/engotesting/" />
+<link rel="alternative" href="/index.xml" title="Jerry Caligiure" type="application/atom+xml" />
+
+<link href="https://cdn.bootcss.com/semantic-ui/2.2.14/semantic.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+</head>
+
+<body>
+  <div class="flip-container">
+    <div class="flipper">
+      <section class="front">
+        
+<nav class="ui top secondary menu">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <a href="/">
+      <i class="inverted big link home icon" title="Home"></i>
+    </a>
+  </div>
+</nav>
+ 
+<div class="ui centered grid">
+  <div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list">
+
+    <section class="ui secondary top attached black segment">
+      <header>
+        <h1 class="ui header">
+          Engo Testing
+          <div class="sub header">@ Jerry Caligiure · Feb 19, 2018 · 3 min read · Update at Feb 19, 2018</div>
+        </h1>
+      </header>
+      <p>Testing Systems for <code>engo</code></p>
+
+<p></p>
+
+<p>I&rsquo;ve been writing test cases for my <a href="https://github.com/Noofbiz/engoBox2dSystem">engoBox2dSystem</a> lately, and have been also adding functionality to <code>engo</code> to help with this. Maybe this blog post can provide some insight into writing more tests of systems.</p>
+
+<p>First, testing systems will require using the testing package, as well as <code>engo</code>&rsquo;s headless mode. To showcase these, this is the test for adding entities to the mouse system:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestMouseSystemAdd</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">RunOptions</span>{
+		<span style="color:#a6e22e">Width</span>:        <span style="color:#ae81ff">100</span>,
+		<span style="color:#a6e22e">Height</span>:       <span style="color:#ae81ff">100</span>,
+		<span style="color:#a6e22e">NoRun</span>:        <span style="color:#66d9ef">true</span>,
+		<span style="color:#a6e22e">HeadlessMode</span>: <span style="color:#66d9ef">true</span>,
+	}, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseTestScene</span>{<span style="color:#ae81ff">5</span>})
+
+	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">entities</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">5</span> {
+		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Entity count does not match number added, have: %d, want: %d&#34;</span>, 
+		len(<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">entities</span>), <span style="color:#ae81ff">5</span>)
+	}
+}</code></pre></div>
+<p>The options for <code>engo.Run</code> for HeadlessMode just initalizes engo for use without an OpenGL surface to draw to. NoRun is another useful testing option shown here. It bypasses <code>engo</code>&rsquo;s main loop, allowing the test full control of when the world/system updates. The other thing of inerest is the scene passed to <code>engo.Run</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MouseTestScene</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">entityCount</span> <span style="color:#66d9ef">int</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Preload</span>() {}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Setup</span>(<span style="color:#a6e22e">w</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">World</span>) {
+	<span style="color:#75715e">// Add systems to the world
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">sys</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseSystem</span>{}
+	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraSystem</span>{})
+	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#a6e22e">sys</span>)
+
+	<span style="color:#75715e">//Add some entities
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">basics</span> = make([]<span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">BasicEntity</span>, <span style="color:#ae81ff">0</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">entityCount</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">basic</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">NewBasic</span>()
+		<span style="color:#a6e22e">basics</span> = append(<span style="color:#a6e22e">basics</span>, <span style="color:#a6e22e">basic</span>)
+		<span style="color:#a6e22e">entity</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">mouseEntity</span>{<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">basic</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseComponent</span>{}, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">SpaceComponent</span>{}, <span style="color:#66d9ef">nil</span>, 
+								<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Box2dComponent</span>{}}
+		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">SpaceComponent</span>{
+			<span style="color:#a6e22e">Position</span>: <span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Point</span>{<span style="color:#a6e22e">X</span>: float32(<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>), <span style="color:#a6e22e">Y</span>: <span style="color:#ae81ff">0</span>},
+			<span style="color:#a6e22e">Width</span>:    <span style="color:#ae81ff">10</span>,
+			<span style="color:#a6e22e">Height</span>:   <span style="color:#ae81ff">10</span>,
+		}
+		<span style="color:#a6e22e">entityBodyDef</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">NewB2BodyDef</span>()
+		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Type</span> = <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2BodyType</span>.<span style="color:#a6e22e">B2_dynamicBody</span>
+		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Position</span> = <span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">ToBox2d2Vec</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Center</span>())
+		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Angle</span> = <span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">DegToRad</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Rotation</span>)
+		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>.<span style="color:#a6e22e">Body</span> = <span style="color:#a6e22e">World</span>.<span style="color:#a6e22e">CreateBody</span>(<span style="color:#a6e22e">entityBodyDef</span>)
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">entityShape</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2PolygonShape</span>
+		<span style="color:#a6e22e">entityShape</span>.<span style="color:#a6e22e">SetAsBox</span>(<span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">PxToMeters</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Width</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>),
+			<span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">PxToMeters</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Height</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>))
+		<span style="color:#a6e22e">entityFixtureDef</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2FixtureDef</span>{
+			<span style="color:#a6e22e">Shape</span>:    <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">entityShape</span>,
+			<span style="color:#a6e22e">Density</span>:  <span style="color:#ae81ff">1</span>,
+			<span style="color:#a6e22e">Friction</span>: <span style="color:#ae81ff">1</span>,
+		}
+		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">CreateFixtureFromDef</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">entityFixtureDef</span>)
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">system</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Systems</span>() {
+			<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">sys</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">system</span>.(<span style="color:#66d9ef">type</span>) {
+			<span style="color:#66d9ef">case</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MouseSystem</span>:
+				<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">BasicEntity</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">MouseComponent</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>,
+						<span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>)
+			}
+		}
+	}
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Type</span>() <span style="color:#66d9ef">string</span> { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;MouseTestScene&#34;</span> }</code></pre></div>
+<p>This is the scene used for testing. All it does is create an entity and add it to the system. The system itself has an entityCount, which is how many entities the system generates.</p>
+
+<p>A few other useful testing techniques I found are to utilize changing around the camera system, I made this function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">cameraShift</span>(<span style="color:#a6e22e">origX</span>, <span style="color:#a6e22e">origY</span>, <span style="color:#a6e22e">transX</span>, <span style="color:#a6e22e">transY</span>, <span style="color:#a6e22e">transZ</span>, <span style="color:#a6e22e">rotation</span> <span style="color:#66d9ef">float32</span>) (<span style="color:#a6e22e">expectedX</span>, <span style="color:#a6e22e">expectedY</span> <span style="color:#66d9ef">float32</span>) {
+	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Input</span>.<span style="color:#a6e22e">Mouse</span>.<span style="color:#a6e22e">X</span> = <span style="color:#a6e22e">origX</span>
+	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Input</span>.<span style="color:#a6e22e">Mouse</span>.<span style="color:#a6e22e">Y</span> = <span style="color:#a6e22e">origY</span>
+	<span style="color:#a6e22e">expectedX</span> = <span style="color:#a6e22e">origX</span>
+	<span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">origY</span>
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transZ</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
+			<span style="color:#a6e22e">Axis</span>:  <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">ZAxis</span>,
+			<span style="color:#a6e22e">Value</span>: <span style="color:#a6e22e">transZ</span>,
+		})
+		<span style="color:#a6e22e">expectedX</span> = <span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>() 
+					<span style="color:#f92672">-</span> (<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">GameWidth</span>() <span style="color:#f92672">*</span> (<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+		<span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>() 
+					<span style="color:#f92672">-</span> (<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">GameHeight</span>() <span style="color:#f92672">*</span> (<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transX</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
+			<span style="color:#a6e22e">Axis</span>:        <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">XAxis</span>,
+			<span style="color:#a6e22e">Value</span>:       <span style="color:#a6e22e">transX</span>,
+			<span style="color:#a6e22e">Incremental</span>: <span style="color:#66d9ef">true</span>,
+		})
+		<span style="color:#a6e22e">expectedX</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">transX</span>
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transY</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
+			<span style="color:#a6e22e">Axis</span>:        <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">YAxis</span>,
+			<span style="color:#a6e22e">Value</span>:       <span style="color:#a6e22e">transY</span>,
+			<span style="color:#a6e22e">Incremental</span>: <span style="color:#66d9ef">true</span>,
+		})
+		<span style="color:#a6e22e">expectedY</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">transY</span>
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">rotation</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
+			<span style="color:#a6e22e">Axis</span>:  <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">Angle</span>,
+			<span style="color:#a6e22e">Value</span>: <span style="color:#a6e22e">rotation</span>,
+		})
+		<span style="color:#a6e22e">sin</span>, <span style="color:#a6e22e">cos</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Sincos</span>(<span style="color:#a6e22e">rotation</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pi</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">180</span>)
+		<span style="color:#a6e22e">expectedX</span>, <span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">cos</span><span style="color:#f92672">+</span><span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>, <span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">cos</span><span style="color:#f92672">-</span><span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>
+	}
+
+	<span style="color:#66d9ef">return</span>
+}</code></pre></div>
+<p>This function takes in the original X and Y position of the mouse, and how you translate (X, Y, and Z) and rotate the camera, then returns the expected X and Y position of the mouse.</p>
+
+<p>Finally, if testing log outputs, you can change what stdout is in the log package:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestMouseSystemNewNoCamera</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">SetOutput</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">str</span>)
+
+	<span style="color:#a6e22e">expected</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;ERROR: CameraSystem not found - have you added the `RenderSystem` before the `MouseSystem`?\n&#34;</span>
+
+	<span style="color:#a6e22e">w</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">World</span>{}
+	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseSystem</span>{})
+
+	<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasSuffix</span>(<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">String</span>(), <span style="color:#a6e22e">expected</span>) {
+		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Log did not recieve correct message suffix, have: %v, wanted (suffix): %v&#34;</span>,
+		<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">String</span>(), <span style="color:#a6e22e">expected</span>)
+	}
+}</code></pre></div>
+<p>This way your log prints to the output you set it to, rather than stdout. This will help test if logs and errors are actually printing correctly ^_^</p>
+
+<p>That&rsquo;s about all the neat testing stuff I&rsquo;ve been finding out lately. Hope you had some fun reading it!</p>
+    </section>
+
+    <footer class="ui secondary attached segment dream-tags">
+      
+      
+      <a class="ui label" href="/tags/engo" title="engo">engo</a>
+      
+      <a class="ui label" href="/tags/ecs" title="ecs">ecs</a>
+      
+      <a class="ui label" href="/tags/testing" title="testing">testing</a>
+      
+      <a class="ui label" href="/tags/go" title="go">go</a>
+      
+      
+    </footer>
+
+    
+    <footer class="ui secondary attached segment">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="creative commons by-nc-sa 4.0" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+    </footer>
+    
+
+    
+
+  </div>
+  <div class="fifteen wide mobile fifteen wide tablet four wide computer column">
+
+    <section class="ui top attached center aligned inverted segment">
+  <div class="ui small circular image">
+    
+    <img src="/images/JerryAvatar.jpg">
+    
+  </div>
+  <h3 class="ui header">Jerry Caligiure&#39;s blog<div class="sub header" style="color: white;">I can&#39;t wait for the future!</div>
+  </h3>
+  <a id="tag-category-pop" class="ui red right corner label">
+    <i class="pointing down icon" title="Click this to pop tags and categories"></i>
+  </a>
+</section>
+
+
+<section class="ui attached center aligned inverted segment dream-tags">
+  
+  <a class="ui label" href="/tags/ecs" title="ecs">ecs</a>
+  
+  <a class="ui label" href="/tags/engo" title="engo">engo</a>
+  
+  <a class="ui label" href="/tags/first" title="first">first</a>
+  
+  <a class="ui label" href="/tags/go" title="go">go</a>
+  
+  <a class="ui label" href="/tags/intro" title="intro">intro</a>
+  
+  <a class="ui label" href="/tags/testing" title="testing">testing</a>
+  
+</section>
+
+
+
+<section class="ui attached inverted segment dream-categories">
+  <div class="ui inverted accordion">
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/engo" class="item" style="color: white;">engo</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/introductions" class="item" style="color: white;">introductions</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/helloworld/" class="item">Helloworld</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/programming" class="item" style="color: white;">programming</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/testing" class="item" style="color: white;">testing</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="ui bottom attached center aligned inverted segment">
+    
+    <p>© 2018 Jerry Caligiure</p>
+    
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+</section>
+
+
+  </div>
+</div>
+
+      </section>
+      <section class="back">
+        <nav class="ui top secondary menu" style="overflow-x: auto">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  
+  <div class="item">
+    <a href="mailto:caligiure.ja@gmail.com">
+      <i class="inverted big mail icon" title="email"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://github.com/Noofbiz" target="_blank">
+      <i class="inverted big github icon" title="github"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://www.linkedin.com/in/jerry-caligiure-6671183a" target="_blank">
+      <i class="inverted big linkedin icon" title="linkedin"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://www.stackoverflow.com/users/6363054/noofbiz" target="_blank">
+      <i class="inverted big stack overflow icon" title="stackoverflow"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://codepen.io/noofbiz" target="_blank">
+      <i class="inverted big codepen icon" title="codepen"></i>
+    </a>
+  </div>
+  
+</nav>
+
+<div class="ui centered grid about">
+  <div class="fifteen wide mobile fifteen wide tablet fifteen wide computer column">
+
+    <section class="ui stacked segments">
+      <header class="ui inverted segment">
+        <h2 class="ui header">
+          About
+        </h2>
+      </header>
+
+      <article class="ui inverted segment">
+        
+        
+          <p>Hello, my name is Jerry Caligiure. Welcome to my blog!</p>
+        
+          <p>I am a father, husband, software developer, and science and math entusiast</p>
+        
+          <p>Those are the subjects this blog will most likely cover ^_^</p>
+        
+          <p>My major interests / activities at the time of writing this are the following</p>
+        
+          <p>Programming in Go</p>
+        
+          <p>Working on Engo, an ECS game engine written in Go</p>
+        
+          <p>Working on an SVG parser for Go that'll turn SVGs into a list of commands that can then convert to an image.Image</p>
+        
+          <p>Brushing up on algorithims</p>
+        
+          <p>Studying some physics stuffs</p>
+        
+          <p>Building an IR reader / encoder for Arduino to update my wife's Tamagochi</p>
+        
+          <p>Also to be able to utilize Alexa to control the TV via IR :P</p>
+        
+        
+      </article>
+
+      
+      <footer class="ui secondary segment">
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="creative commons by-nc-sa 4.0" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      </footer>
+      
+
+      
+      
+    </section>
+
+  </div>
+</div>
+
+      </section>
+    </div>
+  </div>
+
+  
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/bg.js"></script>
+<script src="/js/site.js"></script>
+
+
+
+</body>
+
+</html>

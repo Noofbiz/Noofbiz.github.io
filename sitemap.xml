@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://noofbiz.github.io/post/engotesting/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/post/helloworld/</loc>
     <lastmod>2018-02-16T16:32:37+00:00</lastmod>
   </url>
@@ -13,8 +18,32 @@
   </url>
   
   <url>
+    <loc>https://noofbiz.github.io/tags/ecs/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/tags/engo/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/categories/engo/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/tags/first/</loc>
     <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/tags/go/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -32,19 +61,37 @@
   
   <url>
     <loc>https://noofbiz.github.io/</loc>
-    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://noofbiz.github.io/post/</loc>
-    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/categories/programming/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://noofbiz.github.io/tags/</loc>
-    <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/tags/testing/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/categories/testing/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
     <priority>0</priority>
   </url>
   

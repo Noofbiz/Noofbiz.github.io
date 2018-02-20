@@ -7,10 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 16 Feb 2018 16:32:37 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Feb 2018 18:02:22 +0000</lastBuildDate>
     
 	<atom:link href="https://noofbiz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ecs</title>
+      <link>https://noofbiz.github.io/tags/ecs/</link>
+      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      
+      <guid>https://noofbiz.github.io/tags/ecs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Engo</title>
+      <link>https://noofbiz.github.io/tags/engo/</link>
+      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      
+      <guid>https://noofbiz.github.io/tags/engo/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>First</title>
@@ -22,11 +40,29 @@
     </item>
     
     <item>
+      <title>Go</title>
+      <link>https://noofbiz.github.io/tags/go/</link>
+      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      
+      <guid>https://noofbiz.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Intro</title>
       <link>https://noofbiz.github.io/tags/intro/</link>
       <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
       
       <guid>https://noofbiz.github.io/tags/intro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Testing</title>
+      <link>https://noofbiz.github.io/tags/testing/</link>
+      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      
+      <guid>https://noofbiz.github.io/tags/testing/</guid>
       <description></description>
     </item>
     
