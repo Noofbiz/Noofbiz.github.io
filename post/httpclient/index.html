@@ -51,7 +51,7 @@
       <header>
         <h1 class="ui header">
           Building my own http Client
-          <div class="sub header">@ Jerry Caligiure · Feb 26, 2018 · 3 min read · Update at Feb 26, 2018</div>
+          <div class="sub header">@ Jerry Caligiure · Feb 26, 2018 · 4 min read · Update at Feb 26, 2018</div>
         </h1>
       </header>
       <p>Building an http client from scratch!</p>
@@ -140,6 +140,77 @@ request.</p>
 <p>Also, more often than not, an http client will want to send more than just
 <code>&quot;GET / HTTP/1.0\r\n\r\n&quot;</code>. In fact, sending just this gets a
 400: Bad Request result from the server :P</p>
+
+<p>Alright, let&rsquo;s start with parsing those urls. Most people will expect to put in a typical
+url, so we want it to be of the form http[s]://[www].hostname.ext/file/path/stuff[:port]
+where [] denotes optional parameters. I created a new page to handle this url.go</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">httpClient</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;errors&#34;</span>
+	<span style="color:#e6db74">&#34;strings&#34;</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">protocol</span> <span style="color:#66d9ef">uint</span>
+
+<span style="color:#66d9ef">const</span> (
+	<span style="color:#a6e22e">protocolhttp</span> <span style="color:#a6e22e">protocol</span> = <span style="color:#66d9ef">iota</span>
+	<span style="color:#a6e22e">protocolhttps</span>
+	<span style="color:#a6e22e">protocolUnsupported</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">url</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">scheme</span>   <span style="color:#a6e22e">protocol</span>
+	<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">path</span>     <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">port</span>     <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">parseURL</span>(<span style="color:#a6e22e">in</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">url</span>, <span style="color:#66d9ef">error</span>) {
+	<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>{}
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasPrefix</span>(<span style="color:#a6e22e">in</span>, <span style="color:#e6db74">&#34;http://&#34;</span>) {
+		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolhttp</span>
+		<span style="color:#a6e22e">in</span> = <span style="color:#a6e22e">in</span>[<span style="color:#ae81ff">7</span>:]
+	} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasPrefix</span>(<span style="color:#a6e22e">in</span>, <span style="color:#e6db74">&#34;https://&#34;</span>) {
+		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolhttps</span>
+		<span style="color:#a6e22e">in</span> = <span style="color:#a6e22e">in</span>[<span style="color:#ae81ff">8</span>:]
+	} <span style="color:#66d9ef">else</span> {
+		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolUnsupported</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;unsupported http protocol&#34;</span>)
+	}
+
+	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">in</span>) {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;/&#39;</span> {
+			<span style="color:#66d9ef">break</span>
+		}
+		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">hostname</span> <span style="color:#f92672">+=</span> string(<span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>])
+		<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
+	}
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">in</span>) {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:&#39;</span> {
+			<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> = <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:]
+			<span style="color:#66d9ef">break</span>
+		}
+		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">path</span> <span style="color:#f92672">+=</span> string(<span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>])
+		<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
+	}
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
+		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> = <span style="color:#e6db74">&#34;80&#34;</span>
+	}
+
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">u</span>, <span style="color:#66d9ef">nil</span>
+}</code></pre></div>
+<p>All this really does is loop through the passed url and separate out the protocol,
+a file path, and port number. If the port number isn&rsquo;t passed, it assumes it&rsquo;s
+port 80, which is the standard web server port. I&rsquo;ll probably have to parse the file path
+further down the road for Post and/or Put requests, but that&rsquo;ll look pretty similar,
+just looking for a &lsquo;?&rsquo; and then putting the values into a map[string]string. There&rsquo;s also
+stuff for url encoding of files and other things that could be done. The standard can
+be seen <a href="https://url.spec.whatwg.org">here</a>, and a true http client would implement
+everything.</p>
     </section>
 
     <footer class="ui secondary attached segment dream-tags">
