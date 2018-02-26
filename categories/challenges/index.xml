@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jerry Caligiure</title>
-    <link>https://noofbiz.github.io/</link>
-    <description>Recent content on Jerry Caligiure</description>
+    <title>Challenges on Jerry Caligiure</title>
+    <link>https://noofbiz.github.io/categories/challenges/</link>
+    <description>Recent content in Challenges on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
     <lastBuildDate>Mon, 26 Feb 2018 16:39:27 +0000</lastBuildDate>
     
-	<atom:link href="https://noofbiz.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://noofbiz.github.io/categories/challenges/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,28 +19,6 @@
       
       <guid>https://noofbiz.github.io/post/httpclient/</guid>
       <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Engo Testing</title>
-      <link>https://noofbiz.github.io/post/engotesting/</link>
-      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/post/engotesting/</guid>
-      <description>&lt;p&gt;Testing Systems for &lt;code&gt;engo&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Helloworld</title>
-      <link>https://noofbiz.github.io/post/helloworld/</link>
-      <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/post/helloworld/</guid>
-      <description>&lt;p&gt;Hello everyone!&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
     </item>
