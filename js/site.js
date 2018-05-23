@@ -45,7 +45,7 @@ $(document).ready(function() {
   $('.ui.accordion').accordion()
 
   $('#tag-category-pop').click(function() {
-    var dt = $('.dream-tags')
+    var dt = $('.dream-header-tags.dream-tags')
     var dc = $('.dream-categories')
     var dtDisplay = dt.css('display')
     var dcDisplay = dc.css('display')
@@ -73,4 +73,26 @@ function setSemanticUIColor() {
   tagsParent.children().map(function() {
     $(this).addClass(SemanticUIColors[randomInt(0, SemanticUIColors.length)])
   })
+}
+
+function savePostAsImg() {
+  var postList = $('.post-list')
+  var useWidth = postList.prop('scrollWidth')
+  var useHeight = postList.prop('scrollHeight')
+  var removedHeight = $('.post-list .post-disqus-area').prop('scrollHeight')
+  html2canvas(document.querySelector('.post-single-main'), {
+    width: useWidth,
+    height: useHeight - removedHeight
+  }).then(function(canvas) {
+    var data = canvas.toDataURL('image/png')
+
+    var img = document.createElement('img')
+    img.src = data
+    img.style.width = '200px'
+
+    var w = window.open()
+    w.document.title = 'Export Image'
+    w.document.body.appendChild(img)
+  })
+  return false
 }

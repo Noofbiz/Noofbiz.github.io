@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Jerry Caligiure</title>
+
+  
+  
+  <meta name="author" content="Jerry Caligiure" />
+  <meta name="description" content="Animate an html image element with a little js and a webworker!
+
+" />
+
+
+
+
+
+<meta name="generator" content="Hugo 0.40.3" />
+
+
+<link rel="canonical" href="https://noofbiz.github.io/post/jsanimateimages/" />
+<link rel="alternative" href="/index.xml" title="Jerry Caligiure" type="application/atom+xml" />
+
+<link href="https://cdn.bootcss.com/semantic-ui/2.2.14/semantic.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/css/site.css" />
+
+
+</head>
+
+<body>
+  <div class="flip-container">
+    <div class="flipper">
+      <section class="front">
+        
+<nav class="ui top secondary menu">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  <div class="item">
+    <a href="/">
+      <i class="inverted big link home icon" title="Home"></i>
+    </a>
+  </div>
+</nav>
+ 
+<div class="ui centered grid">
+  <div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list post-single-main">
+
+    <section class="ui secondary top attached black segment">
+      <a class="ui black right corner label" href="javascript:void(0)" onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </a>
+      <header>
+        <h1 class="ui header">
+          JsAnimateImages
+          <div class="sub header">@ Jerry Caligiure · May 23, 2018 · 3 min read · Update at May 23, 2018</div>
+        </h1>
+      </header>
+      <article class="post-content" style="margin-top: 2rem; font-size: 1.4rem;"><p>Animate an html image element with a little js and a webworker!</p>
+
+<p></p>
+
+<p>While working on my site for SkeleboyStudios, I initially wanted to create an
+interactive page utilizing <code>engo</code> and embedding the game in there as the main
+way to navigate and learn about the site. After doing so, it looked a bit cheesy
+and we decided to go forward with a more traditional website.</p>
+
+<p>However, while doing the site, I wanted to animate the pictures used for the
+navbar as well, but I didn&rsquo;t want to make whole separate games and animate them
+in <code>engo</code>. WebGL seemed like it would be pretty expensive for such a small task.
+With just a little bit of javascript and a webworker, I was able to animate them
+without a canvas or WebGL.</p>
+
+<p>First you need an html image element. I used an ID to easily target it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;navHome&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/assets/img/Home1.png&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;home navigation bar button&#34;</span> /&gt;</code></pre></div>
+<p>Next, you&rsquo;ll add the following javascript to the page.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">homes</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Home1.png&#34;</span>, <span style="color:#e6db74">&#34;Home2.png&#34;</span>, <span style="color:#e6db74">&#34;Home3.png&#34;</span>];
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/assets/img/&#39;</span>;
+
+document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;DOMContentLoaded&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">home</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;navHome&#39;</span>);
+  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">Worker</span>) <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;undefined&#34;</span>) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">w</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;undefined&#34;</span>) {
+      <span style="color:#a6e22e">w</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(<span style="color:#e6db74">&#34;/assets/js/navWorker.js&#34;</span>);
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+      <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+      <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+        <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>;
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">homes</span>.<span style="color:#a6e22e">length</span>) {
+          <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+        }
+        <span style="color:#a6e22e">home</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#39;src&#39;</span>, <span style="color:#a6e22e">path</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">homes</span>[<span style="color:#a6e22e">i</span>]);
+        <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+      }
+    }
+  }
+});
+</code></pre></div>
+<p>The first thing this does
+is sets up the path for the images to use as animation frames.</p>
+
+<p>Next, we make sure the page is loaded, then it gets the image element. If the
+browser doesn&rsquo;t support webworkers it&rsquo;ll only show the first frame of your
+animation. If webworkers are available, it sets up the worker using the following
+js in a separate file, in this case /assets/js/navWorker.js</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+  <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
+    <span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+  }, <span style="color:#ae81ff">100</span>);
+}
+</code></pre></div>
+<p>All this does is when the worker recieves a message, it waits 100ms then sends
+a response back. When the response is recieved in the original thread, it changes
+the image source to the next one on the list, then posts a message to the worker again.
+Since the threads are sending responses to one another, this loop will never end.
+However, because it&rsquo;s done through the webworker and the message callbacks, it
+won&rsquo;t stall your main thread to wait for completion! You can do this with multiple
+image elements, and even with other things such as webGL on the same page!</p>
+
+<p>There are a couple other ways to animate using CSS3 or HTML5, but the CSS3
+fade in / out stuff while stacking the images on top of one another seemed a bit
+hacky to me, and I thought this was a simpler solution.</p></article>
+    </section>
+
+    <footer class="ui secondary attached segment dream-tags">
+      
+      
+      <a class="ui label" href="/tags/js" title="js">js</a>
+      
+      <a class="ui label" href="/tags/animation" title="animation">animation</a>
+      
+      
+    </footer>
+
+    
+    <footer class="ui secondary attached segment">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="creative commons by-nc-sa 4.0" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+    </footer>
+    
+
+    
+
+  </div>
+  <div class="fifteen wide mobile fifteen wide tablet four wide computer column">
+
+    <section class="ui top attached center aligned inverted segment">
+  <div class="ui small circular image">
+    
+    <img src="/images/JerryAvatar.jpg">
+    
+  </div>
+  <h3 class="ui header">Jerry Caligiure&#39;s blog<div class="sub header" style="color: white;">I can&#39;t wait for the future!</div>
+  </h3>
+
+  <div class="ui inverted horizontal list">
+    
+    <a class="item" href="/post">
+      <i class="archive icon" title="Archives"></i>
+    </a>
+    
+    <a class="item" href="/tags">
+      <i class="tags icon" title="All Tags"></i>
+    </a>
+    <a class="item" href="/categories">
+      <i class="inverted cubes icon" title="All Categories"></i>
+    </a>
+  </div>
+
+  <a id="tag-category-pop" class="ui red right corner label">
+    <i class="pointing down icon" title="Click this to pop tags and categories"></i>
+  </a>
+</section>
+
+
+<section class="ui attached center aligned inverted segment dream-header-tags dream-tags">
+  
+  <a class="ui label" href="/tags/animation" title="animation">animation</a>
+  
+  <a class="ui label" href="/tags/challenge" title="challenge">challenge</a>
+  
+  <a class="ui label" href="/tags/dailyprogrammer" title="dailyprogrammer">dailyprogrammer</a>
+  
+  <a class="ui label" href="/tags/ecs" title="ecs">ecs</a>
+  
+  <a class="ui label" href="/tags/engo" title="engo">engo</a>
+  
+  <a class="ui label" href="/tags/first" title="first">first</a>
+  
+  <a class="ui label" href="/tags/go" title="go">go</a>
+  
+  <a class="ui label" href="/tags/intro" title="intro">intro</a>
+  
+  <a class="ui label" href="/tags/js" title="js">js</a>
+  
+  <a class="ui label" href="/tags/testing" title="testing">testing</a>
+  
+  <a class="ui label" href="/tags/web" title="web">web</a>
+  
+</section>
+
+
+
+<section class="ui attached inverted segment dream-categories">
+  <div class="ui inverted accordion">
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/challenges" class="item" style="color: white;">challenges</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/httpclient/" class="item">Building my own http Client</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/engo" class="item" style="color: white;">engo</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/introductions" class="item" style="color: white;">introductions</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/helloworld/" class="item">Helloworld</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/programming" class="item" style="color: white;">programming</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/jsanimateimages/" class="item">JsAnimateImages</a>
+        </div>
+      </div>
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/testing" class="item" style="color: white;">testing</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/web" class="item" style="color: white;">web</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/jsanimateimages/" class="item">JsAnimateImages</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="ui bottom attached center aligned inverted segment">
+    
+    <p>© 2018 Jerry Caligiure</p>
+    
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+</section>
+
+
+  </div>
+</div>
+
+      </section>
+      <section class="back">
+        <nav class="ui top secondary menu" style="overflow-x: auto">
+  <div class="item">
+    <i class="inverted big link bullseye icon dream-flip-toggle" title="Flip it!"></i>
+  </div>
+  
+  <div class="item">
+    <a href="mailto:caligiure.ja@gmail.com">
+      <i class="inverted big mail icon" title="email"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://github.com/Noofbiz" target="_blank">
+      <i class="inverted big github icon" title="github"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://www.linkedin.com/in/jerry-caligiure-6671183a" target="_blank">
+      <i class="inverted big linkedin icon" title="linkedin"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://www.stackoverflow.com/users/6363054/noofbiz" target="_blank">
+      <i class="inverted big stack overflow icon" title="stackoverflow"></i>
+    </a>
+  </div>
+  
+  
+  <div class="item">
+    <a href="https://codepen.io/noofbiz" target="_blank">
+      <i class="inverted big codepen icon" title="codepen"></i>
+    </a>
+  </div>
+  
+</nav>
+
+<div class="ui centered grid about">
+  <div class="fifteen wide mobile fifteen wide tablet fifteen wide computer column">
+
+    <section class="ui stacked segments">
+      <header class="ui inverted segment">
+        <h2 class="ui header">
+          About
+        </h2>
+      </header>
+
+      <article class="ui inverted segment back-about">
+        <div class="ui stackable three column grid">
+          <div class="column">
+              
+              <p>Hello, my name is Jerry Caligiure. Welcome to my blog!</p>
+
+<p>I am a father, husband, software developer, and science and math entusiast
+Those are the subjects this blog will most likely cover</p>
+
+<p>My major interests / activities at the time of writing this are:</p>
+
+<ul>
+<li>Programming in Go</li>
+<li>Working on Engo, an ECS game engine written in Go</li>
+<li>Working on an SVG parser for Go that&rsquo;ll turn SVGs into a list of commands that can then convert to an image.Image</li>
+<li>Brushing up on algorithims</li>
+<li>Studying some physics stuffs</li>
+<li>Building an IR reader / encoder for Arduino to update my wife&rsquo;s Tamagochi</li>
+<li>Also to be able to utilize Alexa to control the TV via IR :P</li>
+</ul>
+
+              
+          </div>
+          <div class="column">
+              
+          </div>
+          <div class="column">
+              
+          </div>
+        </div>
+      </article>
+
+      
+      <footer class="ui secondary segment">
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="creative commons by-nc-sa 4.0" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+      </footer>
+      
+
+      
+      
+    </section>
+
+  </div>
+</div>
+
+      </section>
+    </div>
+  </div>
+
+  
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/bg.js"></script>
+<script src="/js/site.js"></script>
+
+
+
+</body>
+
+</html>

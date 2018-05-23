@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 26 Feb 2018 16:39:27 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 23 May 2018 10:16:06 -0400</lastBuildDate>
     
 	<atom:link href="https://noofbiz.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JsAnimateImages</title>
+      <link>https://noofbiz.github.io/post/jsanimateimages/</link>
+      <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
+      
+      <guid>https://noofbiz.github.io/post/jsanimateimages/</guid>
+      <description>&lt;p&gt;Animate an html image element with a little js and a webworker!&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Building my own http Client</title>
@@ -43,6 +54,18 @@
       <description>&lt;p&gt;Hello everyone!&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://noofbiz.github.io/about/desc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://noofbiz.github.io/about/desc/</guid>
+      <description>Hello, my name is Jerry Caligiure. Welcome to my blog!
+I am a father, husband, software developer, and science and math entusiast Those are the subjects this blog will most likely cover
+My major interests / activities at the time of writing this are:
+ Programming in Go Working on Engo, an ECS game engine written in Go Working on an SVG parser for Go that&amp;rsquo;ll turn SVGs into a list of commands that can then convert to an image.</description>
     </item>
     
   </channel>

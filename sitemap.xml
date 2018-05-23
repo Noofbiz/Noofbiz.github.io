@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://noofbiz.github.io/post/jsanimateimages/</loc>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/post/httpclient/</loc>
     <lastmod>2018-02-26T16:39:27+00:00</lastmod>
   </url>
@@ -15,6 +20,21 @@
   <url>
     <loc>https://noofbiz.github.io/post/helloworld/</loc>
     <lastmod>2018-02-16T16:32:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/about/desc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/about/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/tags/animation/</loc>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -84,25 +104,31 @@
   
   <url>
     <loc>https://noofbiz.github.io/</loc>
-    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/tags/js/</loc>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://noofbiz.github.io/post/</loc>
-    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://noofbiz.github.io/categories/programming/</loc>
-    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://noofbiz.github.io/tags/</loc>
-    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -121,6 +147,12 @@
   <url>
     <loc>https://noofbiz.github.io/tags/web/</loc>
     <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://noofbiz.github.io/categories/web/</loc>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
     <priority>0</priority>
   </url>
   

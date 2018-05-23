@@ -16,7 +16,9 @@
 
 
 
-<meta name="generator" content="Hugo 0.37-DEV" />
+
+
+<meta name="generator" content="Hugo 0.40.3" />
 
 
 <link rel="canonical" href="https://noofbiz.github.io/post/httpclient/" />
@@ -45,16 +47,19 @@
 </nav>
  
 <div class="ui centered grid">
-  <div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list">
+  <div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list post-single-main">
 
     <section class="ui secondary top attached black segment">
+      <a class="ui black right corner label" href="javascript:void(0)" onclick="savePostAsImg()">
+        <i class="save icon"></i>
+      </a>
       <header>
         <h1 class="ui header">
           Building my own http Client
           <div class="sub header">@ Jerry Caligiure · Feb 26, 2018 · 6 min read · Update at Feb 26, 2018</div>
         </h1>
       </header>
-      <p>Building an http client from scratch!</p>
+      <article class="post-content" style="margin-top: 2rem; font-size: 1.4rem;"><p>Building an http client from scratch!</p>
 
 <p></p>
 
@@ -298,7 +303,7 @@ handle the response.</p>
 <p>This now properly returns the body when you make a GET request in the current URL! That&rsquo;s
 about how an http GET client works! I&rsquo;ll probably add the bonus suff later down the road,
 so keep a look out for that! Remember, the full code is available on
-<a href="https://github.com/Noofbiz/httpClient">github!</a> Feel free to have a look!</p>
+<a href="https://github.com/Noofbiz/httpClient">github!</a> Feel free to have a look!</p></article>
     </section>
 
     <footer class="ui secondary attached segment dream-tags">
@@ -334,13 +339,30 @@ so keep a look out for that! Remember, the full code is available on
   </div>
   <h3 class="ui header">Jerry Caligiure&#39;s blog<div class="sub header" style="color: white;">I can&#39;t wait for the future!</div>
   </h3>
+
+  <div class="ui inverted horizontal list">
+    
+    <a class="item" href="/post">
+      <i class="archive icon" title="Archives"></i>
+    </a>
+    
+    <a class="item" href="/tags">
+      <i class="tags icon" title="All Tags"></i>
+    </a>
+    <a class="item" href="/categories">
+      <i class="inverted cubes icon" title="All Categories"></i>
+    </a>
+  </div>
+
   <a id="tag-category-pop" class="ui red right corner label">
     <i class="pointing down icon" title="Click this to pop tags and categories"></i>
   </a>
 </section>
 
 
-<section class="ui attached center aligned inverted segment dream-tags">
+<section class="ui attached center aligned inverted segment dream-header-tags dream-tags">
+  
+  <a class="ui label" href="/tags/animation" title="animation">animation</a>
   
   <a class="ui label" href="/tags/challenge" title="challenge">challenge</a>
   
@@ -355,6 +377,8 @@ so keep a look out for that! Remember, the full code is available on
   <a class="ui label" href="/tags/go" title="go">go</a>
   
   <a class="ui label" href="/tags/intro" title="intro">intro</a>
+  
+  <a class="ui label" href="/tags/js" title="js">js</a>
   
   <a class="ui label" href="/tags/testing" title="testing">testing</a>
   
@@ -428,6 +452,13 @@ so keep a look out for that! Remember, the full code is available on
       <div class="item" style="padding-left: 24px;">
         <i class="cocktail icon"></i>
         <div class="content">
+          <a href="https://noofbiz.github.io/post/jsanimateimages/" class="item">JsAnimateImages</a>
+        </div>
+      </div>
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
           <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
         </div>
       </div>
@@ -446,6 +477,23 @@ so keep a look out for that! Remember, the full code is available on
         <i class="cocktail icon"></i>
         <div class="content">
           <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+    
+    <div class="title">
+      <i class="dropdown icon"></i>
+      <a href="/categories/web" class="item" style="color: white;">web</a>
+    </div>
+    <div class="content">
+      <div class="ui link inverted list">
+      
+      <div class="item" style="padding-left: 24px;">
+        <i class="cocktail icon"></i>
+        <div class="content">
+          <a href="https://noofbiz.github.io/post/jsanimateimages/" class="item">JsAnimateImages</a>
         </div>
       </div>
       
@@ -520,32 +568,36 @@ so keep a look out for that! Remember, the full code is available on
         </h2>
       </header>
 
-      <article class="ui inverted segment">
-        
-        
-          <p>Hello, my name is Jerry Caligiure. Welcome to my blog!</p>
-        
-          <p>I am a father, husband, software developer, and science and math entusiast</p>
-        
-          <p>Those are the subjects this blog will most likely cover ^_^</p>
-        
-          <p>My major interests / activities at the time of writing this are the following</p>
-        
-          <p>Programming in Go</p>
-        
-          <p>Working on Engo, an ECS game engine written in Go</p>
-        
-          <p>Working on an SVG parser for Go that'll turn SVGs into a list of commands that can then convert to an image.Image</p>
-        
-          <p>Brushing up on algorithims</p>
-        
-          <p>Studying some physics stuffs</p>
-        
-          <p>Building an IR reader / encoder for Arduino to update my wife's Tamagochi</p>
-        
-          <p>Also to be able to utilize Alexa to control the TV via IR :P</p>
-        
-        
+      <article class="ui inverted segment back-about">
+        <div class="ui stackable three column grid">
+          <div class="column">
+              
+              <p>Hello, my name is Jerry Caligiure. Welcome to my blog!</p>
+
+<p>I am a father, husband, software developer, and science and math entusiast
+Those are the subjects this blog will most likely cover</p>
+
+<p>My major interests / activities at the time of writing this are:</p>
+
+<ul>
+<li>Programming in Go</li>
+<li>Working on Engo, an ECS game engine written in Go</li>
+<li>Working on an SVG parser for Go that&rsquo;ll turn SVGs into a list of commands that can then convert to an image.Image</li>
+<li>Brushing up on algorithims</li>
+<li>Studying some physics stuffs</li>
+<li>Building an IR reader / encoder for Arduino to update my wife&rsquo;s Tamagochi</li>
+<li>Also to be able to utilize Alexa to control the TV via IR :P</li>
+</ul>
+
+              
+          </div>
+          <div class="column">
+              
+          </div>
+          <div class="column">
+              
+          </div>
+        </div>
       </article>
 
       
@@ -568,6 +620,7 @@ so keep a look out for that! Remember, the full code is available on
   
 <script src="/js/jquery.min.js"></script>
 <script src="/js/semantic.min.js"></script>
+<script src="/js/html2canvas.min.js"></script>
 <script src="/js/bg.js"></script>
 <script src="/js/site.js"></script>
 
