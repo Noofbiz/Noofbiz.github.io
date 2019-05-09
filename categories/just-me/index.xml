@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Just Me on Jerry Caligiure</title>
+    <link>https://noofbiz.github.io/categories/just-me/</link>
+    <description>Recent content in Just Me on Jerry Caligiure</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate>
+    
+	<atom:link href="https://noofbiz.github.io/categories/just-me/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Duck</title>
+      <link>https://noofbiz.github.io/post/duck/</link>
+      <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
+      
+      <guid>https://noofbiz.github.io/post/duck/</guid>
+      <description>&lt;p&gt;Today I ate a duck.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

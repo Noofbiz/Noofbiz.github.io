@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://noofbiz.github.io/post/duck/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/post/jsanimateimages/</loc>
     <lastmod>2018-05-23T10:16:06-04:00</lastmod>
   </url>
@@ -61,6 +66,12 @@
   </url>
   
   <url>
+    <loc>https://noofbiz.github.io/tags/duck/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/tags/ecs/</loc>
     <lastmod>2018-02-19T18:02:22+00:00</lastmod>
     <priority>0</priority>
@@ -91,6 +102,12 @@
   </url>
   
   <url>
+    <loc>https://noofbiz.github.io/tags/good-food/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/tags/intro/</loc>
     <lastmod>2018-02-16T16:32:37+00:00</lastmod>
     <priority>0</priority>
@@ -104,7 +121,7 @@
   
   <url>
     <loc>https://noofbiz.github.io/</loc>
-    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -115,8 +132,14 @@
   </url>
   
   <url>
+    <loc>https://noofbiz.github.io/categories/just-me/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://noofbiz.github.io/post/</loc>
-    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
     <priority>0</priority>
   </url>
   
