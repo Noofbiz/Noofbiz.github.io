@@ -69,14 +69,32 @@
     
     <item>
       <title></title>
+      <link>https://noofbiz.github.io/about/desc-center/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://noofbiz.github.io/about/desc-center/</guid>
+      <description>My major interests / activities at the time of writing this are:
+ Programming in Go Working on Engo, an ECS game engine written in Go Working on an SVG parser for Go that&amp;rsquo;ll turn SVGs into a list of commands that can then convert to an image.Image Brushing up on algorithims Studying some physics stuffs Building an IR reader / encoder for Arduino to update my wife&amp;rsquo;s Tamagochi Also to be able to utilize Alexa to control the TV via IR :P  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://noofbiz.github.io/about/desc-right/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://noofbiz.github.io/about/desc-right/</guid>
+      <description>Projects I&amp;rsquo;m working on:
+ Engo: An ECS game engine written in Go Summer Vacation: A game built using Engo hypnic: A game made for the open game art game jam. Built using Engo. Gleam: A pure-go window, view, and event library. Inspired by glfw and shiny. Feed Me: A cross-platform RSS feed reader / viewer built using electron, sql, and go.  </description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://noofbiz.github.io/about/desc/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://noofbiz.github.io/about/desc/</guid>
       <description>Hello, my name is Jerry Caligiure. Welcome to my blog!
-I am a father, husband, software developer, and science and math entusiast Those are the subjects this blog will most likely cover
-My major interests / activities at the time of writing this are:
- Programming in Go Working on Engo, an ECS game engine written in Go Working on an SVG parser for Go that&amp;rsquo;ll turn SVGs into a list of commands that can then convert to an image.</description>
+I am a father, husband, software developer, and science and math entusiast Those are the subjects this blog will most likely cover.</description>
     </item>
     
   </channel>
