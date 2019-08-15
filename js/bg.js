@@ -1,14 +1,15 @@
 // From https://uigradients.com
 var dreamBGGradients = [
   [],
-  ['#40e0d0', '#ff8c00', '#ff0080'], // Wedding Day Blues
-  ['#3e5151', '#decba4'], // Sand to Blue
-  ['#11998e', '#38ef7d'], // Quepal
-  ['#108dc7', '#ef8e38'], // Pun Yeta
-  ['#fc5c7d', '#6a82fb'], // Sublime Light
-  ['#fc466b', '#3f5efb'], // Sublime Vivid
-  ['#c94b4b', '#4b134f'], // Bighead
-  ['#23074d', '#cc5333'] // Taran Tado
+  ['#5433FF', '#20BDFF', '#A5FECB'], // Wedding Day Blues
+  ['#000000', '#0f9b0f'], // Terminal
+  ['#59C173', '#a17fe0', '#5D26C1'], // Magic
+  ['#a8ff78', '#78ffd6'], // Summer dog
+  ['#A1FFCE', '#FAFFD1'], // Limeaide
+  ['#a80077', '#66ff00'], // Shahabi
+  ['#FDFC47', '#24FE41'], // Martini
+  ['#1D976C', '#93F9B9'], // Mojito
+  ['#3CA55C', '#B5AC49'] // Lemon twist
 ]
 
 var dreamBody = $('body')
