@@ -1,82 +1,175 @@
 <!DOCTYPE html>
-<html lang="en-us">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>
-Building my own http Client
-</title>
-
   
+    <title>Building my own http Client :: Jerry Caligiure</title>
   
-  <meta name="author" content="Jerry Caligiure" />
-  <meta name="description" content="Building an http client from scratch!
-
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Building an http client from scratch!
 " />
+<meta name="keywords" content="blag" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/httpclient/" />
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+  <link rel="stylesheet" href="/assets/green.css">
 
 
 
 
 
-<meta name="generator" content="Hugo 0.40.3" />
+
+<link rel="apple-touch-icon" href="/img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="/img/favicon/green.png">
 
 
-<link rel="canonical" href="https://noofbiz.github.io/post/httpclient/" />
-<link rel="alternative" href="/index.xml" title="Jerry Caligiure" type="application/atom+xml" />
 
-<link href="/css/semantic.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="/css/site.css" />
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="Jerry Caligiure" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Building my own http Client">
+<meta property="og:description" content="Building an http client from scratch!
+" />
+<meta property="og:url" content="/post/httpclient/" />
+<meta property="og:site_name" content="Jerry Caligiure" />
+
+  <meta property="og:image" content="/images/httpclient/cover.jpeg">
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+  <meta property="article:section" content="Challenges" />
+
+
+  <meta property="article:published_time" content="2018-02-26 16:39:27 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
 
 
 </head>
+<body class="green">
 
-<body>
-  <div class="flip-container">
-    <div class="flipper">
-      <section class="front">
+
+<div class="container center headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Jerry@Noofibz:~$
+  </div>
+</a>
+
+    </div>
+    <div class="menu-trigger">menu</div>
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
         
-<nav class="ui top secondary menu">
-  <div class="item">
-    <i class="inverted big link bullseye icon dream-flip-toggle" title="Flip it!"></i>
-  </div>
-  <div class="item">
-    <a href="/">
-      <i class="inverted big link home icon" title="Home"></i>
-    </a>
-  </div>
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/showcase">Showcase</a></li>
+      
+    
+    
+  </ul>
 </nav>
- 
-<div class="ui centered grid">
-  <div class="fifteen wide mobile fifteen wide tablet eleven wide computer column post-list post-single-main">
 
-    <section class="ui secondary top attached black segment">
-      <a class="ui black right corner label" href="javascript:void(0)" onclick="savePostAsImg()">
-        <i class="save icon"></i>
-      </a>
-      <header>
-        <h1 class="ui header">
-          Building my own http Client
-          <div class="sub header">@ Jerry Caligiure · Feb 26, 2018 · 6 min read · Update at Feb 26, 2018</div>
-        </h1>
-      </header>
-      <article class="post-content" style="margin-top: 2rem; font-size: 1.4rem;"><p>Building an http client from scratch!</p>
+  
+</header>
 
-<p></p>
 
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/post/httpclient/">Building my own http Client</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2018-02-26 
+      </span>
+    
+    
+    <span class="post-author">:: Jerry Caligiure</span>
+    
+  </div>
+
+  
+  <span class="post-tags">
+    
+    #<a href="/tags/web/">web</a>&nbsp;
+    
+    #<a href="/tags/go/">go</a>&nbsp;
+    
+    #<a href="/tags/dailyprogrammer/">dailyprogrammer</a>&nbsp;
+    
+    #<a href="/tags/challenge/">challenge</a>&nbsp;
+    
+  </span>
+  
+
+  
+    <img src="/images/httpclient/cover.jpeg" class="post-cover" alt="Building my own http Client" />
+  
+
+  
+
+  <div class="post-content"><div>
+        <p>Building an http client from scratch!</p>
 <p>Hello! Web clients are everywhere. You&rsquo;re reading this on one, most likely! Nearly everything
 most poeple do on computers is making http requests, but how does that actually happen? What is
 going on when you open a website? Hopefully, this can provide some insight into that!</p>
-
 <p>Today I&rsquo;m going to try doing a challenge from the dailyprogrammer rather
 than anything actually constructive ^_^! The challenge is
 <a href="https://www.reddit.com/r/dailyprogrammer/comments/7jzy8k/20171215_challenge_344_hard_write_a_web_client/">here</a>
 and it&rsquo;s basically to build an http client from the ground-up.</p>
-
 <p>The code is going to be on my <a href="https://github.com/Noofbiz/httpClient">github</a> if you want to take a look,
 and I made a <a href="https://ide.c9.io/noofbiz/http-client">c9</a> for it as well. Let&rsquo;s get started.</p>
-
 <p>First off, go has an amazing http package in its standard library, so this would be too easy
 if we were allowed to utilize those. I&rsquo;ll start from there and kind of work backwards to see how
 it should work at the end of the day.</p>
@@ -100,14 +193,13 @@ it should work at the end of the day.</p>
 		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Malformed response body. %v\n&#34;</span>, <span style="color:#a6e22e">err</span>)
 	}
 	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s\n&#34;</span>, <span style="color:#a6e22e">b</span>)
-}</code></pre></div>
-<p>So, this is super simple and against the rules! However, it does do some neat things that
+}
+</code></pre></div><p>So, this is super simple and against the rules! However, it does do some neat things that
 will be useful later. It forms an http Request, which is what the client sends from itself
 to the server. It essentially tells the server that it wants to tell it something. Then the
 server reads the request and sends the client back a response. This is essentially how a
 web browser works: it sends a request to a web server, and the web server responds by sending
 the browser back the web page for it to display for the user.</p>
-
 <p>To actually learn something about http clients,
 I&rsquo;m going to limit myself to just the net.Dial to create the connections, then do Read/Write on
 the connections themselves from there.</p>
@@ -132,22 +224,19 @@ the connections themselves from there.</p>
 	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">resp</span>)
 
 	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
-}</code></pre></div>
-<p>So, now I&rsquo;ve got a start! The level for this library is around using net.Dial
+}
+</code></pre></div><p>So, now I&rsquo;ve got a start! The level for this library is around using net.Dial
 and <code>net.Conn</code>. The Dial opens a connection with the server, and returs it as
 a <code>net.Conn</code>. By writing to Conn, you&rsquo;re sending out a request. You can then read
 the server&rsquo;s response by reading from the Conn.</p>
-
 <p>Right now, however, the way this works is by carefully selecting a url. The url from the
 first example has to be changed to <code>&quot;[httpbin.org]:80&quot;</code> in order to work. As most
 people would like to enter a url, and not deal with port numbers, host names, usernames,
 passwords, etc. themselves this information should be either put into the url or in the
 request.</p>
-
 <p>Also, more often than not, an http client will want to send more than just
 <code>&quot;GET / HTTP/1.0\r\n\r\n&quot;</code>. In fact, sending just this gets a
 400: Bad Request result from the server :P</p>
-
 <p>Alright, let&rsquo;s start with parsing those urls. Most people will expect to put in a typical
 url, so we want it to be of the form http[s]://[www].hostname.ext/file/path/stuff[:port]
 where [] denotes optional parameters. I created a new page to handle this url.go</p>
@@ -209,8 +298,8 @@ where [] denotes optional parameters. I created a new page to handle this url.go
 	}
 
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">u</span>, <span style="color:#66d9ef">nil</span>
-}</code></pre></div>
-<p>All this really does is loop through the passed url and separate out the protocol,
+}
+</code></pre></div><p>All this really does is loop through the passed url and separate out the protocol,
 a file path, and port number. If the port number isn&rsquo;t passed, it assumes it&rsquo;s
 port 80, which is the standard web server port. I&rsquo;ll probably have to parse the file path
 further down the road for Post and/or Put requests, but that&rsquo;ll look pretty similar,
@@ -218,7 +307,6 @@ just looking for a &lsquo;?&rsquo; and then putting the values into a map[string
 stuff for url encoding of files and other things that could be done. The standard can
 be seen <a href="https://url.spec.whatwg.org">here</a>, and a true http client would implement
 everything.</p>
-
 <p>Now, to create the proper headers. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">MDN</a>
 has a great list of the header file bits and what they do. Using ones relevent to
 my GET request, my function ends up like this</p>
@@ -262,14 +350,13 @@ my GET request, my function ends up like this</p>
 	}
 
 	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
-}</code></pre></div>
-<p>When I run it like this, it works! The server accepts my request and sends me the
+}
+</code></pre></div><p>When I run it like this, it works! The server accepts my request and sends me the
 proper response. However, it never breaks out of that loop. Unlike in file io,
 a server response never actually sends an EOF. It keeps the connection alive
 and waits for further input. To fix this, I&rsquo;ll have to actually parse the header
 of the response, find out the content length, and use that in my reader to properly
 handle the response.</p>
-
 <p>The for loop now looks like this</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bufio</span>.<span style="color:#a6e22e">NewReader</span>(<span style="color:#a6e22e">conn</span>)
 	<span style="color:#a6e22e">respHeader</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>)
@@ -301,366 +388,71 @@ handle the response.</p>
 		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
 	}
 
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#a6e22e">buf</span>)</code></pre></div>
-<p>This now properly returns the body when you make a GET request in the current URL! That&rsquo;s
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#a6e22e">buf</span>)
+</code></pre></div><p>This now properly returns the body when you make a GET request in the current URL! That&rsquo;s
 about how an http GET client works! I&rsquo;ll probably add the bonus suff later down the road,
 so keep a look out for that! Remember, the full code is available on
-<a href="https://github.com/Noofbiz/httpClient">github!</a> Feel free to have a look!</p></article>
-    </section>
+<a href="https://github.com/Noofbiz/httpClient">github!</a> Feel free to have a look!</p>
+      </div></div>
 
-    <footer class="ui secondary attached segment dream-tags">
-      
-      
-      <a class="ui label" href="/tags/web" title="web">web</a>
-      
-      <a class="ui label" href="/tags/go" title="go">go</a>
-      
-      <a class="ui label" href="/tags/dailyprogrammer" title="dailyprogrammer">dailyprogrammer</a>
-      
-      <a class="ui label" href="/tags/challenge" title="challenge">challenge</a>
-      
-      
-    </footer>
-
-    
-    <footer class="ui secondary attached segment">
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="creative commons by-nc-sa 4.0" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
-    </footer>
-    
-
-    
-
-  </div>
-  <div class="fifteen wide mobile fifteen wide tablet four wide computer column">
-
-    <section class="ui top attached center aligned inverted segment">
-  <div class="ui small circular image">
-    
-    <img src="/images/JerryAvatar.jpg">
-    
-  </div>
-  <h3 class="ui header">Jerry Caligiure&#39;s blog<div class="sub header" style="color: white;">I can&#39;t wait for the future!</div>
-  </h3>
-
-  <div class="ui inverted horizontal list">
-    
-    <a class="item" href="/post">
-      <i class="archive icon" title="Archives"></i>
-    </a>
-    
-    <a class="item" href="/tags">
-      <i class="tags icon" title="All Tags"></i>
-    </a>
-    <a class="item" href="/categories">
-      <i class="inverted cubes icon" title="All Categories"></i>
-    </a>
-  </div>
-
-  <a id="tag-category-pop" class="ui red right corner label">
-    <i class="pointing down icon" title="Click this to pop tags and categories"></i>
-  </a>
-</section>
-
-
-<section class="ui attached center aligned inverted segment dream-header-tags dream-tags">
   
-  <a class="ui label" href="/tags/animation" title="animation">animation</a>
   
-  <a class="ui label" href="/tags/challenge" title="challenge">challenge</a>
-  
-  <a class="ui label" href="/tags/dailyprogrammer" title="dailyprogrammer">dailyprogrammer</a>
-  
-  <a class="ui label" href="/tags/duck" title="duck">duck</a>
-  
-  <a class="ui label" href="/tags/ecs" title="ecs">ecs</a>
-  
-  <a class="ui label" href="/tags/engo" title="engo">engo</a>
-  
-  <a class="ui label" href="/tags/first" title="first">first</a>
-  
-  <a class="ui label" href="/tags/go" title="go">go</a>
-  
-  <a class="ui label" href="/tags/good-food" title="good-food">good-food</a>
-  
-  <a class="ui label" href="/tags/intro" title="intro">intro</a>
-  
-  <a class="ui label" href="/tags/js" title="js">js</a>
-  
-  <a class="ui label" href="/tags/testing" title="testing">testing</a>
-  
-  <a class="ui label" href="/tags/web" title="web">web</a>
-  
-</section>
-
-
-
-<section class="ui attached inverted segment dream-categories">
-  <div class="ui inverted accordion">
-    
-    <div class="title">
-      <i class="dropdown icon"></i>
-      <a href="/categories/challenges" class="item" style="color: white;">challenges</a>
+<div class="pagination">
+    <div class="pagination__title">
+        <span class="pagination__title-h">Read other posts</span>
+        <hr />
     </div>
-    <div class="content">
-      <div class="ui link inverted list">
-      
-      <div class="item" style="padding-left: 24px;">
-        <i class="cocktail icon"></i>
-        <div class="content">
-          <a href="https://noofbiz.github.io/post/httpclient/" class="item">Building my own http Client</a>
-        </div>
-      </div>
-      
-      </div>
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/post/jsanimateimages/">
+                <span class="button__icon">←</span>
+                <span class="button__text">JsAnimateImages</span>
+            </a>
+        </span>
+        
+        
+        <span class="button next">
+            <a href="/post/engotesting/">
+                <span class="button__text">Engo Testing</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
     </div>
-    
-    <div class="title">
-      <i class="dropdown icon"></i>
-      <a href="/categories/engo" class="item" style="color: white;">engo</a>
-    </div>
-    <div class="content">
-      <div class="ui link inverted list">
-      
-      <div class="item" style="padding-left: 24px;">
-        <i class="cocktail icon"></i>
-        <div class="content">
-          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
-        </div>
-      </div>
-      
-      </div>
-    </div>
-    
-    <div class="title">
-      <i class="dropdown icon"></i>
-      <a href="/categories/introductions" class="item" style="color: white;">introductions</a>
-    </div>
-    <div class="content">
-      <div class="ui link inverted list">
-      
-      <div class="item" style="padding-left: 24px;">
-        <i class="cocktail icon"></i>
-        <div class="content">
-          <a href="https://noofbiz.github.io/post/helloworld/" class="item">Helloworld</a>
-        </div>
-      </div>
-      
-      </div>
-    </div>
-    
-    <div class="title">
-      <i class="dropdown icon"></i>
-      <a href="/categories/just-me" class="item" style="color: white;">just-me</a>
-    </div>
-    <div class="content">
-      <div class="ui link inverted list">
-      
-      <div class="item" style="padding-left: 24px;">
-        <i class="cocktail icon"></i>
-        <div class="content">
-          <a href="https://noofbiz.github.io/post/duck/" class="item">Duck</a>
-        </div>
-      </div>
-      
-      </div>
-    </div>
-    
-    <div class="title">
-      <i class="dropdown icon"></i>
-      <a href="/categories/programming" class="item" style="color: white;">programming</a>
-    </div>
-    <div class="content">
-      <div class="ui link inverted list">
-      
-      <div class="item" style="padding-left: 24px;">
-        <i class="cocktail icon"></i>
-        <div class="content">
-          <a href="https://noofbiz.github.io/post/jsanimateimages/" class="item">JsAnimateImages</a>
-        </div>
-      </div>
-      
-      <div class="item" style="padding-left: 24px;">
-        <i class="cocktail icon"></i>
-        <div class="content">
-          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
-        </div>
-      </div>
-      
-      </div>
-    </div>
-    
-    <div class="title">
-      <i class="dropdown icon"></i>
-      <a href="/categories/testing" class="item" style="color: white;">testing</a>
-    </div>
-    <div class="content">
-      <div class="ui link inverted list">
-      
-      <div class="item" style="padding-left: 24px;">
-        <i class="cocktail icon"></i>
-        <div class="content">
-          <a href="https://noofbiz.github.io/post/engotesting/" class="item">Engo Testing</a>
-        </div>
-      </div>
-      
-      </div>
-    </div>
-    
-    <div class="title">
-      <i class="dropdown icon"></i>
-      <a href="/categories/web" class="item" style="color: white;">web</a>
-    </div>
-    <div class="content">
-      <div class="ui link inverted list">
-      
-      <div class="item" style="padding-left: 24px;">
-        <i class="cocktail icon"></i>
-        <div class="content">
-          <a href="https://noofbiz.github.io/post/jsanimateimages/" class="item">JsAnimateImages</a>
-        </div>
-      </div>
-      
-      </div>
-    </div>
-    
-  </div>
-</section>
-
-
-<section class="ui bottom attached center aligned inverted segment">
-    
-    <p>© 2018 - 2019 Jerry Caligiure</p>
-    
-    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
-</section>
-
-
-  </div>
 </div>
 
-      </section>
-      <section class="back">
-        <nav class="ui top secondary menu" style="overflow-x: auto">
-  <div class="item">
-    <i class="inverted big link bullseye icon dream-flip-toggle" title="Flip it!"></i>
-  </div>
   
-  <div class="item">
-    <a href="mailto:caligiure.ja@gmail.com">
-      <i class="inverted big mail icon" title="email"></i>
-    </a>
-  </div>
+
   
-  
-  <div class="item">
-    <a href="https://github.com/Noofbiz" target="_blank">
-      <i class="inverted big github icon" title="github"></i>
-    </a>
-  </div>
-  
-  
-  <div class="item">
-    <a href="https://www.linkedin.com/in/jerry-caligiure-6671183a" target="_blank">
-      <i class="inverted big linkedin icon" title="linkedin"></i>
-    </a>
-  </div>
-  
-  
-  <div class="item">
-    <a href="https://www.stackoverflow.com/users/6363054/noofbiz" target="_blank">
-      <i class="inverted big stack overflow icon" title="stackoverflow"></i>
-    </a>
-  </div>
-  
-  
-  <div class="item">
-    <a href="https://codepen.io/noofbiz" target="_blank">
-      <i class="inverted big codepen icon" title="codepen"></i>
-    </a>
-  </div>
-  
-</nav>
 
-<div class="ui centered grid about">
-  <div class="fifteen wide mobile fifteen wide tablet fifteen wide computer column">
-
-    <section class="ui stacked segments">
-      <header class="ui inverted segment">
-        <h2 class="ui header">
-          About
-        </h2>
-      </header>
-
-      <article class="ui inverted segment back-about">
-        <div class="ui stackable three column grid">
-          <div class="column">
-              
-              <p>Hello, my name is Jerry Caligiure. Welcome to my blog!</p>
-
-<p>I am a father, husband, software developer, and science and math entusiast
-Those are the subjects this blog will most likely cover.</p>
-
-              
-          </div>
-          <div class="column">
-              
-              My major interests / activities at the time of writing this are:</p>
-
-<ul>
-<li>Programming in Go</li>
-<li>Working on Engo, an ECS game engine written in Go</li>
-<li>Working on an SVG parser for Go that&rsquo;ll turn SVGs into a list of commands that can then convert to an image.Image</li>
-<li>Brushing up on algorithims</li>
-<li>Studying some physics stuffs</li>
-<li>Building an IR reader / encoder for Arduino to update my wife&rsquo;s Tamagochi</li>
-<li>Also to be able to utilize Alexa to control the TV via IR :P</li>
-</ul>
-
-              
-          </div>
-          <div class="column">
-              
-              Projects I&rsquo;m working on:</p>
-
-<ul>
-<li><a href="https://engoengine.github.io">Engo</a>: An ECS game engine written in Go</li>
-<li>Summer Vacation: A game built using Engo</li>
-<li><a href="https://github.com/Noofbiz/hypnic">hypnic</a>: A game made for the open game art game jam. Built using Engo.</li>
-<li><a href="https://github.com/Noofbiz/gleam">Gleam</a>: A pure-go window, view, and event library. Inspired by glfw and shiny.</li>
-<li><a href="https://github.com/Noofbiz/FeedMe">Feed Me</a>: A cross-platform RSS feed reader / viewer built using electron, sql, and go.</li>
-</ul>
-
-              
-          </div>
-        </div>
-      </article>
-
-      
-      <footer class="ui secondary segment">
-        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="creative commons by-nc-sa 4.0" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
-      </footer>
-      
-
-      
-      
-    </section>
-
-  </div>
 </div>
 
-      </section>
-    </div>
   </div>
 
   
-<script src="/js/jquery.min.js"></script>
-<script src="/js/semantic.min.js"></script>
-<script src="/js/html2canvas.min.js"></script>
-<script src="/js/bg.js"></script>
-<script src="/js/site.js"></script>
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>2018</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
 
 
+
+
+
+
+
+  
+</div>
 
 </body>
-
 </html>

@@ -1,100 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jerry Caligiure</title>
-    <link>https://noofbiz.github.io/</link>
+    <link>/</link>
     <description>Recent content on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate>
+    <copyright>2018</copyright>
+    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About me!</title>
+      <link>/about/</link>
+      <pubDate>Sun, 11 Oct 2020 10:21:14 -0400</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hello, my name is Jerry Caligiure. Welcome to my blog!
+Due to the recent COVID-19 pandemic, I&amp;rsquo;m now juggling homeschooling my 3rd grader on top of entertaining the 4 year old. To say it&amp;rsquo;s hectic is putting it lightly. Despite all these challenges, I&amp;rsquo;m still finding time to lightly work on some other projects.
+I am a father, husband, software developer, and science and math enthusiast Those are the subjects this blog will most likely cover.</description>
+    </item>
     
-	<atom:link href="https://noofbiz.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>Showcase</title>
+      <link>/showcase/</link>
+      <pubDate>Sun, 11 Oct 2020 10:21:14 -0400</pubDate>
+      
+      <guid>/showcase/</guid>
+      <description>Welcome to a showcase of projects I worked on / am working on!
+engo engo is a 2-D ecs game engine written in the go programming language. I manage the day-to-day of the project, keep up on the Continuous Integration to ensure the engine builds at each PR, review the PR to ensure it meets quality standards and guidelines, and map out the future of the project and which features will be added/maintained.</description>
+    </item>
     
     <item>
       <title>Duck</title>
-      <link>https://noofbiz.github.io/post/duck/</link>
+      <link>/post/duck/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
       
-      <guid>https://noofbiz.github.io/post/duck/</guid>
-      <description>&lt;p&gt;Today I ate a duck.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/duck/</guid>
+      <description>&lt;p&gt;Today I ate a duck.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>JsAnimateImages</title>
-      <link>https://noofbiz.github.io/post/jsanimateimages/</link>
+      <link>/post/jsanimateimages/</link>
       <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
       
-      <guid>https://noofbiz.github.io/post/jsanimateimages/</guid>
-      <description>&lt;p&gt;Animate an html image element with a little js and a webworker!&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/jsanimateimages/</guid>
+      <description>&lt;p&gt;Animate an html image element with a little js and a webworker!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Building my own http Client</title>
-      <link>https://noofbiz.github.io/post/httpclient/</link>
+      <link>/post/httpclient/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/post/httpclient/</guid>
-      <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/httpclient/</guid>
+      <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Engo Testing</title>
-      <link>https://noofbiz.github.io/post/engotesting/</link>
+      <link>/post/engotesting/</link>
       <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/post/engotesting/</guid>
-      <description>&lt;p&gt;Testing Systems for &lt;code&gt;engo&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/engotesting/</guid>
+      <description>&lt;p&gt;Testing Systems for &lt;code&gt;engo&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Helloworld</title>
-      <link>https://noofbiz.github.io/post/helloworld/</link>
+      <link>/post/helloworld/</link>
       <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/post/helloworld/</guid>
-      <description>&lt;p&gt;Hello everyone!&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://noofbiz.github.io/about/desc-center/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/about/desc-center/</guid>
-      <description>My major interests / activities at the time of writing this are:
- Programming in Go Working on Engo, an ECS game engine written in Go Working on an SVG parser for Go that&amp;rsquo;ll turn SVGs into a list of commands that can then convert to an image.Image Brushing up on algorithims Studying some physics stuffs Building an IR reader / encoder for Arduino to update my wife&amp;rsquo;s Tamagochi Also to be able to utilize Alexa to control the TV via IR :P  </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://noofbiz.github.io/about/desc-right/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/about/desc-right/</guid>
-      <description>Projects I&amp;rsquo;m working on:
- Engo: An ECS game engine written in Go Summer Vacation: A game built using Engo hypnic: A game made for the open game art game jam. Built using Engo. Gleam: A pure-go window, view, and event library. Inspired by glfw and shiny. Feed Me: A cross-platform RSS feed reader / viewer built using electron, sql, and go.  </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://noofbiz.github.io/about/desc/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/about/desc/</guid>
-      <description>Hello, my name is Jerry Caligiure. Welcome to my blog!
-I am a father, husband, software developer, and science and math entusiast Those are the subjects this blog will most likely cover.</description>
+      <guid>/post/helloworld/</guid>
+      <description>&lt;p&gt;Hello everyone!&lt;/p&gt;</description>
     </item>
     
   </channel>

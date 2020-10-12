@@ -1,26 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dailyprogrammer on Jerry Caligiure</title>
-    <link>https://noofbiz.github.io/tags/dailyprogrammer/</link>
-    <description>Recent content in Dailyprogrammer on Jerry Caligiure</description>
+    <title>dailyprogrammer on Jerry Caligiure</title>
+    <link>/tags/dailyprogrammer/</link>
+    <description>Recent content in dailyprogrammer on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 26 Feb 2018 16:39:27 +0000</lastBuildDate>
-    
-	<atom:link href="https://noofbiz.github.io/tags/dailyprogrammer/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2018</copyright>
+    <lastBuildDate>Mon, 26 Feb 2018 16:39:27 +0000</lastBuildDate><atom:link href="/tags/dailyprogrammer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building my own http Client</title>
-      <link>https://noofbiz.github.io/post/httpclient/</link>
+      <link>/post/httpclient/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/post/httpclient/</guid>
-      <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/httpclient/</guid>
+      <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;</description>
     </item>
     
   </channel>

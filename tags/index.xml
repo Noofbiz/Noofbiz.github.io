@@ -1,131 +1,127 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Jerry Caligiure</title>
-    <link>https://noofbiz.github.io/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 23 May 2018 10:16:06 -0400</lastBuildDate>
-    
-	<atom:link href="https://noofbiz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2018</copyright>
+    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Animation</title>
-      <link>https://noofbiz.github.io/tags/animation/</link>
-      <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
-      
-      <guid>https://noofbiz.github.io/tags/animation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Challenge</title>
-      <link>https://noofbiz.github.io/tags/challenge/</link>
-      <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/tags/challenge/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dailyprogrammer</title>
-      <link>https://noofbiz.github.io/tags/dailyprogrammer/</link>
-      <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/tags/dailyprogrammer/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Duck</title>
-      <link>https://noofbiz.github.io/tags/duck/</link>
+      <title>duck</title>
+      <link>/tags/duck/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
       
-      <guid>https://noofbiz.github.io/tags/duck/</guid>
+      <guid>/tags/duck/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Ecs</title>
-      <link>https://noofbiz.github.io/tags/ecs/</link>
-      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/tags/ecs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Engo</title>
-      <link>https://noofbiz.github.io/tags/engo/</link>
-      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/tags/engo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>First</title>
-      <link>https://noofbiz.github.io/tags/first/</link>
-      <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/tags/first/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://noofbiz.github.io/tags/go/</link>
-      <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Good Food</title>
-      <link>https://noofbiz.github.io/tags/good-food/</link>
+      <title>good food</title>
+      <link>/tags/good-food/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
       
-      <guid>https://noofbiz.github.io/tags/good-food/</guid>
+      <guid>/tags/good-food/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Intro</title>
-      <link>https://noofbiz.github.io/tags/intro/</link>
-      <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/tags/intro/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Js</title>
-      <link>https://noofbiz.github.io/tags/js/</link>
+      <title>animation</title>
+      <link>/tags/animation/</link>
       <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
       
-      <guid>https://noofbiz.github.io/tags/js/</guid>
+      <guid>/tags/animation/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Testing</title>
-      <link>https://noofbiz.github.io/tags/testing/</link>
-      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      <title>js</title>
+      <link>/tags/js/</link>
+      <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
       
-      <guid>https://noofbiz.github.io/tags/testing/</guid>
+      <guid>/tags/js/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Web</title>
-      <link>https://noofbiz.github.io/tags/web/</link>
+      <title>challenge</title>
+      <link>/tags/challenge/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/tags/web/</guid>
+      <guid>/tags/challenge/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dailyprogrammer</title>
+      <link>/tags/dailyprogrammer/</link>
+      <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
+      
+      <guid>/tags/dailyprogrammer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>/tags/go/</link>
+      <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
+      
+      <guid>/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>/tags/web/</link>
+      <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
+      
+      <guid>/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ecs</title>
+      <link>/tags/ecs/</link>
+      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      
+      <guid>/tags/ecs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>engo</title>
+      <link>/tags/engo/</link>
+      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      
+      <guid>/tags/engo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>/tags/testing/</link>
+      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      
+      <guid>/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>first</title>
+      <link>/tags/first/</link>
+      <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
+      
+      <guid>/tags/first/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>intro</title>
+      <link>/tags/intro/</link>
+      <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
+      
+      <guid>/tags/intro/</guid>
       <description></description>
     </item>
     

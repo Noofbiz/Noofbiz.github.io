@@ -1,190 +1,160 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://noofbiz.github.io/post/duck/</loc>
+    <loc>/about/</loc>
+    <lastmod>2020-10-11T10:21:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/showcase/</loc>
+    <lastmod>2020-10-11T10:21:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
     <lastmod>2019-05-08T19:25:14-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://noofbiz.github.io/post/jsanimateimages/</loc>
+    <loc>/post/duck/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/duck/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/good-food/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/just-me/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/animation/</loc>
     <lastmod>2018-05-23T10:16:06-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://noofbiz.github.io/post/httpclient/</loc>
+    <loc>/tags/js/</loc>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/jsanimateimages/</loc>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/programming/</loc>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/web/</loc>
+    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/httpclient/</loc>
     <lastmod>2018-02-26T16:39:27+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://noofbiz.github.io/post/engotesting/</loc>
+    <loc>/tags/challenge/</loc>
+    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/challenges/</loc>
+    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/dailyprogrammer/</loc>
+    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/go/</loc>
+    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/web/</loc>
+    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/ecs/</loc>
     <lastmod>2018-02-19T18:02:22+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://noofbiz.github.io/post/helloworld/</loc>
+    <loc>/tags/engo/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/engo/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/engotesting/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/testing/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/testing/</loc>
+    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/first/</loc>
     <lastmod>2018-02-16T16:32:37+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://noofbiz.github.io/about/desc-center/</loc>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/about/desc-right/</loc>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/about/desc/</loc>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/about/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/animation/</loc>
-    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/challenge/</loc>
-    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/categories/challenges/</loc>
-    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/dailyprogrammer/</loc>
-    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/duck/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/ecs/</loc>
-    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/engo/</loc>
-    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/categories/engo/</loc>
-    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/first/</loc>
+    <loc>/post/helloworld/</loc>
     <lastmod>2018-02-16T16:32:37+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://noofbiz.github.io/tags/go/</loc>
-    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/good-food/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/intro/</loc>
+    <loc>/tags/intro/</loc>
     <lastmod>2018-02-16T16:32:37+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://noofbiz.github.io/categories/introductions/</loc>
+    <loc>/categories/introductions/</loc>
     <lastmod>2018-02-16T16:32:37+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/js/</loc>
-    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/categories/just-me/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/post/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/categories/programming/</loc>
-    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/</loc>
-    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/testing/</loc>
-    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/categories/testing/</loc>
-    <lastmod>2018-02-19T18:02:22+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/tags/web/</loc>
-    <lastmod>2018-02-26T16:39:27+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://noofbiz.github.io/categories/web/</loc>
-    <lastmod>2018-05-23T10:16:06-04:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

@@ -1,70 +1,56 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Jerry Caligiure</title>
-    <link>https://noofbiz.github.io/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate>
-    
-	<atom:link href="https://noofbiz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>2018</copyright>
+    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Duck</title>
-      <link>https://noofbiz.github.io/post/duck/</link>
+      <link>/post/duck/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
       
-      <guid>https://noofbiz.github.io/post/duck/</guid>
-      <description>&lt;p&gt;Today I ate a duck.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/duck/</guid>
+      <description>&lt;p&gt;Today I ate a duck.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>JsAnimateImages</title>
-      <link>https://noofbiz.github.io/post/jsanimateimages/</link>
+      <link>/post/jsanimateimages/</link>
       <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
       
-      <guid>https://noofbiz.github.io/post/jsanimateimages/</guid>
-      <description>&lt;p&gt;Animate an html image element with a little js and a webworker!&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/jsanimateimages/</guid>
+      <description>&lt;p&gt;Animate an html image element with a little js and a webworker!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Building my own http Client</title>
-      <link>https://noofbiz.github.io/post/httpclient/</link>
+      <link>/post/httpclient/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/post/httpclient/</guid>
-      <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/httpclient/</guid>
+      <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Engo Testing</title>
-      <link>https://noofbiz.github.io/post/engotesting/</link>
+      <link>/post/engotesting/</link>
       <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/post/engotesting/</guid>
-      <description>&lt;p&gt;Testing Systems for &lt;code&gt;engo&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/engotesting/</guid>
+      <description>&lt;p&gt;Testing Systems for &lt;code&gt;engo&lt;/code&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Helloworld</title>
-      <link>https://noofbiz.github.io/post/helloworld/</link>
+      <link>/post/helloworld/</link>
       <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/post/helloworld/</guid>
-      <description>&lt;p&gt;Hello everyone!&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;</description>
+      <guid>/post/helloworld/</guid>
+      <description>&lt;p&gt;Hello everyone!&lt;/p&gt;</description>
     </item>
     
   </channel>

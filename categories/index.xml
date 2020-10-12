@@ -1,76 +1,73 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Jerry Caligiure</title>
-    <link>https://noofbiz.github.io/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc-sa/4.0/&#34;&gt;&lt;img alt=&#34;creative commons by-nc-sa 4.0&#34; style=&#34;border-width:0&#34; src=&#34;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&#34; /&gt;&lt;/a&gt;</copyright>
+    <copyright>2018</copyright>
+    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>just me</title>
+      <link>/categories/just-me/</link>
+      <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
+      
+      <guid>/categories/just-me/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://noofbiz.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>programming</title>
+      <link>/categories/programming/</link>
+      <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
+      
+      <guid>/categories/programming/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>web</title>
+      <link>/categories/web/</link>
+      <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
+      
+      <guid>/categories/web/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Challenges</title>
-      <link>https://noofbiz.github.io/categories/challenges/</link>
+      <link>/categories/challenges/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/categories/challenges/</guid>
+      <guid>/categories/challenges/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Engo</title>
-      <link>https://noofbiz.github.io/categories/engo/</link>
+      <title>engo</title>
+      <link>/categories/engo/</link>
       <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/categories/engo/</guid>
+      <guid>/categories/engo/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Introductions</title>
-      <link>https://noofbiz.github.io/categories/introductions/</link>
+      <title>testing</title>
+      <link>/categories/testing/</link>
+      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
+      
+      <guid>/categories/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>introductions</title>
+      <link>/categories/introductions/</link>
       <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
       
-      <guid>https://noofbiz.github.io/categories/introductions/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Just Me</title>
-      <link>https://noofbiz.github.io/categories/just-me/</link>
-      <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
-      
-      <guid>https://noofbiz.github.io/categories/just-me/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Programming</title>
-      <link>https://noofbiz.github.io/categories/programming/</link>
-      <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
-      
-      <guid>https://noofbiz.github.io/categories/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Testing</title>
-      <link>https://noofbiz.github.io/categories/testing/</link>
-      <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
-      <guid>https://noofbiz.github.io/categories/testing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Web</title>
-      <link>https://noofbiz.github.io/categories/web/</link>
-      <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
-      
-      <guid>https://noofbiz.github.io/categories/web/</guid>
+      <guid>/categories/introductions/</guid>
       <description></description>
     </item>
     
