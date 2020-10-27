@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-10-25T20:57:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/gameinpurego/</loc>
+    <lastmod>2020-10-25T20:57:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/duck/</loc>
+    <lastmod>2020-10-25T20:57:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/good-food/</loc>
+    <lastmod>2020-10-25T20:57:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-10-25T20:57:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/just-me/</loc>
+    <lastmod>2020-10-25T20:57:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-10-25T20:57:37-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-10-25T20:57:37-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2020-10-11T10:21:14-04:00</lastmod>
   </url>
@@ -13,42 +53,7 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/duck/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/duck/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/good-food/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/just-me/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2019-05-08T19:25:14-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2019-05-08T19:25:14-04:00</lastmod>
   </url>
   
