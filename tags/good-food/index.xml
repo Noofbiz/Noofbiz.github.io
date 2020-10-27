@@ -7,18 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2018</copyright>
-    <lastBuildDate>Sun, 25 Oct 2020 20:57:37 -0400</lastBuildDate><atom:link href="/tags/good-food/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Creating A Game In Pure Go</title>
-      <link>/post/gameinpurego/</link>
-      <pubDate>Sun, 25 Oct 2020 20:57:37 -0400</pubDate>
-      
-      <guid>/post/gameinpurego/</guid>
-      <description>I&amp;rsquo;m going to participate in the Github Game-Off this year! But with some interesting aspects, to make it more fun! This time, I&amp;rsquo;m going to build the whole game in Go!
-But Jerry! You already maintain a pretty awesome game engine in go! Why don&amp;rsquo;t you just use that!
-You misunderstand! I&amp;rsquo;m going to make EVERYTHING in go. Of course, engo will be there! But I&amp;rsquo;m going to create all the textures using gg, programatically!</description>
-    </item>
-    
+    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate><atom:link href="/tags/good-food/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Duck</title>
       <link>/post/duck/</link>
