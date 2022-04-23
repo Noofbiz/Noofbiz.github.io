@@ -169,41 +169,41 @@ in <code>engo</code>. WebGL seemed like it would be pretty expensive for such a 
 With just a little bit of javascript and a webworker, I was able to animate them
 without a canvas or WebGL.</p>
 <p>First you need an html image element. I used an ID to easily target it.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;navHome&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/assets/img/Home1.png&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;home navigation bar button&#34;</span> /&gt;
-</code></pre></div><p>Next, you&rsquo;ll add the following javascript to the page.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">homes</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Home1.png&#34;</span>, <span style="color:#e6db74">&#34;Home2.png&#34;</span>, <span style="color:#e6db74">&#34;Home3.png&#34;</span>];
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/assets/img/&#39;</span>;
-
-document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;DOMContentLoaded&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">home</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;navHome&#39;</span>);
-  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">Worker</span>) <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;undefined&#34;</span>) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">w</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;undefined&#34;</span>) {
-      <span style="color:#a6e22e">w</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(<span style="color:#e6db74">&#34;/assets/js/navWorker.js&#34;</span>);
-      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-      <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
-      <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-        <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>;
-        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">homes</span>.<span style="color:#a6e22e">length</span>) {
-          <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-        }
-        <span style="color:#a6e22e">home</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#39;src&#39;</span>, <span style="color:#a6e22e">path</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">homes</span>[<span style="color:#a6e22e">i</span>]);
-        <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
-      }
-    }
-  }
-});
-</code></pre></div><p>The first thing this does
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;navHome&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/assets/img/Home1.png&#34;</span> <span style="color:#a6e22e">alt</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;home navigation bar button&#34;</span> /&gt;
+</span></span></code></pre></div><p>Next, you&rsquo;ll add the following javascript to the page.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">homes</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Home1.png&#34;</span>, <span style="color:#e6db74">&#34;Home2.png&#34;</span>, <span style="color:#e6db74">&#34;Home3.png&#34;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;/assets/img/&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;DOMContentLoaded&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">home</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;navHome&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">Worker</span>) <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;undefined&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span>(<span style="color:#a6e22e">w</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;undefined&#34;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">w</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(<span style="color:#e6db74">&#34;/assets/js/navWorker.js&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">homes</span>.<span style="color:#a6e22e">length</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">home</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#39;src&#39;</span>, <span style="color:#a6e22e">path</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">homes</span>[<span style="color:#a6e22e">i</span>]);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>The first thing this does
 is sets up the path for the images to use as animation frames.</p>
 <p>Next, we make sure the page is loaded, then it gets the image element. If the
 browser doesn&rsquo;t support webworkers it&rsquo;ll only show the first frame of your
 animation. If webworkers are available, it sets up the worker using the following
 js in a separate file, in this case /assets/js/navWorker.js</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
-  <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
-    <span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
-  }, <span style="color:#ae81ff">100</span>);
-}
-</code></pre></div><p>All this does is when the worker recieves a message, it waits 100ms then sends
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTimeout</span>(<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">postMessage</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>  }, <span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>All this does is when the worker recieves a message, it waits 100ms then sends
 a response back. When the response is recieved in the original thread, it changes
 the image source to the next one on the list, then posts a message to the worker again.
 Since the threads are sending responses to one another, this loop will never end.

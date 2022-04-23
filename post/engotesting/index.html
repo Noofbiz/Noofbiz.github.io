@@ -167,134 +167,134 @@
         <p>Testing Systems for <code>engo</code></p>
 <p>I&rsquo;ve been writing test cases for my <a href="https://github.com/Noofbiz/engoBox2dSystem">engoBox2dSystem</a> lately, and have been also adding functionality to <code>engo</code> to help with this. Maybe this blog post can provide some insight into writing more tests of systems.</p>
 <p>First, testing systems will require using the testing package, as well as <code>engo</code>&rsquo;s headless mode. To showcase these, this is the test for adding entities to the mouse system:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestMouseSystemAdd</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
-	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">RunOptions</span>{
-		<span style="color:#a6e22e">Width</span>:        <span style="color:#ae81ff">100</span>,
-		<span style="color:#a6e22e">Height</span>:       <span style="color:#ae81ff">100</span>,
-		<span style="color:#a6e22e">NoRun</span>:        <span style="color:#66d9ef">true</span>,
-		<span style="color:#a6e22e">HeadlessMode</span>: <span style="color:#66d9ef">true</span>,
-	}, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseTestScene</span>{<span style="color:#ae81ff">5</span>})
-
-	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">entities</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">5</span> {
-		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Entity count does not match number added, have: %d, want: %d&#34;</span>,
-		len(<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">entities</span>), <span style="color:#ae81ff">5</span>)
-	}
-}
-</code></pre></div><p>The options for <code>engo.Run</code> for HeadlessMode just initalizes engo for use without an OpenGL surface to draw to. NoRun is another useful testing option shown here. It bypasses <code>engo</code>&rsquo;s main loop, allowing the test full control of when the world/system updates. The other thing of inerest is the scene passed to <code>engo.Run</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MouseTestScene</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">entityCount</span> <span style="color:#66d9ef">int</span>
-}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Preload</span>() {}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Setup</span>(<span style="color:#a6e22e">w</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">World</span>) {
-	<span style="color:#75715e">// Add systems to the world
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">sys</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseSystem</span>{}
-	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraSystem</span>{})
-	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#a6e22e">sys</span>)
-
-	<span style="color:#75715e">//Add some entities
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">basics</span> = make([]<span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">BasicEntity</span>, <span style="color:#ae81ff">0</span>)
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">entityCount</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-		<span style="color:#a6e22e">basic</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">NewBasic</span>()
-		<span style="color:#a6e22e">basics</span> = append(<span style="color:#a6e22e">basics</span>, <span style="color:#a6e22e">basic</span>)
-		<span style="color:#a6e22e">entity</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">mouseEntity</span>{<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">basic</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseComponent</span>{}, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">SpaceComponent</span>{}, <span style="color:#66d9ef">nil</span>,
-								<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Box2dComponent</span>{}}
-		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">SpaceComponent</span>{
-			<span style="color:#a6e22e">Position</span>: <span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Point</span>{<span style="color:#a6e22e">X</span>: float32(<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>), <span style="color:#a6e22e">Y</span>: <span style="color:#ae81ff">0</span>},
-			<span style="color:#a6e22e">Width</span>:    <span style="color:#ae81ff">10</span>,
-			<span style="color:#a6e22e">Height</span>:   <span style="color:#ae81ff">10</span>,
-		}
-		<span style="color:#a6e22e">entityBodyDef</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">NewB2BodyDef</span>()
-		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Type</span> = <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2BodyType</span>.<span style="color:#a6e22e">B2_dynamicBody</span>
-		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Position</span> = <span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">ToBox2d2Vec</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Center</span>())
-		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Angle</span> = <span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">DegToRad</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Rotation</span>)
-		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>.<span style="color:#a6e22e">Body</span> = <span style="color:#a6e22e">World</span>.<span style="color:#a6e22e">CreateBody</span>(<span style="color:#a6e22e">entityBodyDef</span>)
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">entityShape</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2PolygonShape</span>
-		<span style="color:#a6e22e">entityShape</span>.<span style="color:#a6e22e">SetAsBox</span>(<span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">PxToMeters</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Width</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>),
-			<span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">PxToMeters</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Height</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>))
-		<span style="color:#a6e22e">entityFixtureDef</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2FixtureDef</span>{
-			<span style="color:#a6e22e">Shape</span>:    <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">entityShape</span>,
-			<span style="color:#a6e22e">Density</span>:  <span style="color:#ae81ff">1</span>,
-			<span style="color:#a6e22e">Friction</span>: <span style="color:#ae81ff">1</span>,
-		}
-		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">CreateFixtureFromDef</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">entityFixtureDef</span>)
-		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">system</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Systems</span>() {
-			<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">sys</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">system</span>.(<span style="color:#66d9ef">type</span>) {
-			<span style="color:#66d9ef">case</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MouseSystem</span>:
-				<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">BasicEntity</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">MouseComponent</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>,
-						<span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>)
-			}
-		}
-	}
-}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Type</span>() <span style="color:#66d9ef">string</span> { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;MouseTestScene&#34;</span> }
-</code></pre></div><p>This is the scene used for testing. All it does is create an entity and add it to the system. The system itself has an entityCount, which is how many entities the system generates.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestMouseSystemAdd</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">RunOptions</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Width</span>:        <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Height</span>:       <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">NoRun</span>:        <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">HeadlessMode</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>	}, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseTestScene</span>{<span style="color:#ae81ff">5</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">entities</span>) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">5</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Entity count does not match number added, have: %d, want: %d&#34;</span>,
+</span></span><span style="display:flex;"><span>		len(<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">entities</span>), <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The options for <code>engo.Run</code> for HeadlessMode just initalizes engo for use without an OpenGL surface to draw to. NoRun is another useful testing option shown here. It bypasses <code>engo</code>&rsquo;s main loop, allowing the test full control of when the world/system updates. The other thing of inerest is the scene passed to <code>engo.Run</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MouseTestScene</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">entityCount</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Preload</span>() {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Setup</span>(<span style="color:#a6e22e">w</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">World</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Add systems to the world
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">sys</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseSystem</span>{}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraSystem</span>{})
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#a6e22e">sys</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//Add some entities
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">basics</span> = make([]<span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">BasicEntity</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">entityCount</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">basic</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">NewBasic</span>()
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">basics</span> = append(<span style="color:#a6e22e">basics</span>, <span style="color:#a6e22e">basic</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entity</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">mouseEntity</span>{<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">basic</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseComponent</span>{}, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">SpaceComponent</span>{}, <span style="color:#66d9ef">nil</span>,
+</span></span><span style="display:flex;"><span>								<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Box2dComponent</span>{}}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">SpaceComponent</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Position</span>: <span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Point</span>{<span style="color:#a6e22e">X</span>: float32(<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">20</span>), <span style="color:#a6e22e">Y</span>: <span style="color:#ae81ff">0</span>},
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Width</span>:    <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Height</span>:   <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entityBodyDef</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">NewB2BodyDef</span>()
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Type</span> = <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2BodyType</span>.<span style="color:#a6e22e">B2_dynamicBody</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Position</span> = <span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">ToBox2d2Vec</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Center</span>())
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entityBodyDef</span>.<span style="color:#a6e22e">Angle</span> = <span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">DegToRad</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Rotation</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>.<span style="color:#a6e22e">Body</span> = <span style="color:#a6e22e">World</span>.<span style="color:#a6e22e">CreateBody</span>(<span style="color:#a6e22e">entityBodyDef</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">entityShape</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2PolygonShape</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entityShape</span>.<span style="color:#a6e22e">SetAsBox</span>(<span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">PxToMeters</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Width</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Conv</span>.<span style="color:#a6e22e">PxToMeters</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>.<span style="color:#a6e22e">Height</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entityFixtureDef</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">box2d</span>.<span style="color:#a6e22e">B2FixtureDef</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Shape</span>:    <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">entityShape</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Density</span>:  <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Friction</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">CreateFixtureFromDef</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">entityFixtureDef</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">system</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Systems</span>() {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">sys</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">system</span>.(<span style="color:#66d9ef">type</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">case</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">MouseSystem</span>:
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">BasicEntity</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">MouseComponent</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">SpaceComponent</span>,
+</span></span><span style="display:flex;"><span>						<span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">entity</span>.<span style="color:#a6e22e">Box2dComponent</span>)
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#f92672">*</span><span style="color:#a6e22e">MouseTestScene</span>) <span style="color:#a6e22e">Type</span>() <span style="color:#66d9ef">string</span> { <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;MouseTestScene&#34;</span> }
+</span></span></code></pre></div><p>This is the scene used for testing. All it does is create an entity and add it to the system. The system itself has an entityCount, which is how many entities the system generates.</p>
 <p>A few other useful testing techniques I found are to utilize changing around the camera system, I made this function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">cameraShift</span>(<span style="color:#a6e22e">origX</span>, <span style="color:#a6e22e">origY</span>, <span style="color:#a6e22e">transX</span>, <span style="color:#a6e22e">transY</span>, <span style="color:#a6e22e">transZ</span>, <span style="color:#a6e22e">rotation</span> <span style="color:#66d9ef">float32</span>) (<span style="color:#a6e22e">expectedX</span>, <span style="color:#a6e22e">expectedY</span> <span style="color:#66d9ef">float32</span>) {
-	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Input</span>.<span style="color:#a6e22e">Mouse</span>.<span style="color:#a6e22e">X</span> = <span style="color:#a6e22e">origX</span>
-	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Input</span>.<span style="color:#a6e22e">Mouse</span>.<span style="color:#a6e22e">Y</span> = <span style="color:#a6e22e">origY</span>
-	<span style="color:#a6e22e">expectedX</span> = <span style="color:#a6e22e">origX</span>
-	<span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">origY</span>
-
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transZ</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
-		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
-			<span style="color:#a6e22e">Axis</span>:  <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">ZAxis</span>,
-			<span style="color:#a6e22e">Value</span>: <span style="color:#a6e22e">transZ</span>,
-		})
-		<span style="color:#a6e22e">expectedX</span> = <span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>()
-					<span style="color:#f92672">-</span> (<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">GameWidth</span>() <span style="color:#f92672">*</span> (<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
-		<span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>()
-					<span style="color:#f92672">-</span> (<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">GameHeight</span>() <span style="color:#f92672">*</span> (<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
-	}
-
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transX</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
-		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
-			<span style="color:#a6e22e">Axis</span>:        <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">XAxis</span>,
-			<span style="color:#a6e22e">Value</span>:       <span style="color:#a6e22e">transX</span>,
-			<span style="color:#a6e22e">Incremental</span>: <span style="color:#66d9ef">true</span>,
-		})
-		<span style="color:#a6e22e">expectedX</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">transX</span>
-	}
-
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transY</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
-		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
-			<span style="color:#a6e22e">Axis</span>:        <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">YAxis</span>,
-			<span style="color:#a6e22e">Value</span>:       <span style="color:#a6e22e">transY</span>,
-			<span style="color:#a6e22e">Incremental</span>: <span style="color:#66d9ef">true</span>,
-		})
-		<span style="color:#a6e22e">expectedY</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">transY</span>
-	}
-
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">rotation</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
-		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
-			<span style="color:#a6e22e">Axis</span>:  <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">Angle</span>,
-			<span style="color:#a6e22e">Value</span>: <span style="color:#a6e22e">rotation</span>,
-		})
-		<span style="color:#a6e22e">sin</span>, <span style="color:#a6e22e">cos</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Sincos</span>(<span style="color:#a6e22e">rotation</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pi</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">180</span>)
-		<span style="color:#a6e22e">expectedX</span>, <span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">cos</span><span style="color:#f92672">+</span><span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>, <span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">cos</span><span style="color:#f92672">-</span><span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>
-	}
-
-	<span style="color:#66d9ef">return</span>
-}
-</code></pre></div><p>This function takes in the original X and Y position of the mouse, and how you translate (X, Y, and Z) and rotate the camera, then returns the expected X and Y position of the mouse.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">cameraShift</span>(<span style="color:#a6e22e">origX</span>, <span style="color:#a6e22e">origY</span>, <span style="color:#a6e22e">transX</span>, <span style="color:#a6e22e">transY</span>, <span style="color:#a6e22e">transZ</span>, <span style="color:#a6e22e">rotation</span> <span style="color:#66d9ef">float32</span>) (<span style="color:#a6e22e">expectedX</span>, <span style="color:#a6e22e">expectedY</span> <span style="color:#66d9ef">float32</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Input</span>.<span style="color:#a6e22e">Mouse</span>.<span style="color:#a6e22e">X</span> = <span style="color:#a6e22e">origX</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Input</span>.<span style="color:#a6e22e">Mouse</span>.<span style="color:#a6e22e">Y</span> = <span style="color:#a6e22e">origY</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">expectedX</span> = <span style="color:#a6e22e">origX</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">origY</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transZ</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Axis</span>:  <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">ZAxis</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Value</span>: <span style="color:#a6e22e">transZ</span>,
+</span></span><span style="display:flex;"><span>		})
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">expectedX</span> = <span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>()
+</span></span><span style="display:flex;"><span>					<span style="color:#f92672">-</span> (<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">GameWidth</span>() <span style="color:#f92672">*</span> (<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>()
+</span></span><span style="display:flex;"><span>					<span style="color:#f92672">-</span> (<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">GameHeight</span>() <span style="color:#f92672">*</span> (<span style="color:#a6e22e">sys</span>.<span style="color:#a6e22e">camera</span>.<span style="color:#a6e22e">Z</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transX</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Axis</span>:        <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">XAxis</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Value</span>:       <span style="color:#a6e22e">transX</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Incremental</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>		})
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">expectedX</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">transX</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">transY</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Axis</span>:        <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">YAxis</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Value</span>:       <span style="color:#a6e22e">transY</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Incremental</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>		})
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">expectedY</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">transY</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">rotation</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">engo</span>.<span style="color:#a6e22e">Mailbox</span>.<span style="color:#a6e22e">Dispatch</span>(<span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">CameraMessage</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Axis</span>:  <span style="color:#a6e22e">common</span>.<span style="color:#a6e22e">Angle</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">Value</span>: <span style="color:#a6e22e">rotation</span>,
+</span></span><span style="display:flex;"><span>		})
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">sin</span>, <span style="color:#a6e22e">cos</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Sincos</span>(<span style="color:#a6e22e">rotation</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">math</span>.<span style="color:#a6e22e">Pi</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">180</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">expectedX</span>, <span style="color:#a6e22e">expectedY</span> = <span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">cos</span><span style="color:#f92672">+</span><span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>, <span style="color:#a6e22e">expectedY</span><span style="color:#f92672">*</span><span style="color:#a6e22e">cos</span><span style="color:#f92672">-</span><span style="color:#a6e22e">expectedX</span><span style="color:#f92672">*</span><span style="color:#a6e22e">sin</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This function takes in the original X and Y position of the mouse, and how you translate (X, Y, and Z) and rotate the camera, then returns the expected X and Y position of the mouse.</p>
 <p>Finally, if testing log outputs, you can change what stdout is in the log package:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestMouseSystemNewNoCamera</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">SetOutput</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">str</span>)
-
-	<span style="color:#a6e22e">expected</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;ERROR: CameraSystem not found - have you added the `RenderSystem` before the `MouseSystem`?\n&#34;</span>
-
-	<span style="color:#a6e22e">w</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">World</span>{}
-	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseSystem</span>{})
-
-	<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasSuffix</span>(<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">String</span>(), <span style="color:#a6e22e">expected</span>) {
-		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Log did not recieve correct message suffix, have: %v, wanted (suffix): %v&#34;</span>,
-		<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">String</span>(), <span style="color:#a6e22e">expected</span>)
-	}
-}
-</code></pre></div><p>This way your log prints to the output you set it to, rather than stdout. This will help test if logs and errors are actually printing correctly ^_^</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestMouseSystemNewNoCamera</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">SetOutput</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">str</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">expected</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;ERROR: CameraSystem not found - have you added the `RenderSystem` before the `MouseSystem`?\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">w</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ecs</span>.<span style="color:#a6e22e">World</span>{}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">AddSystem</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">MouseSystem</span>{})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasSuffix</span>(<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">String</span>(), <span style="color:#a6e22e">expected</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Log did not recieve correct message suffix, have: %v, wanted (suffix): %v&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">String</span>(), <span style="color:#a6e22e">expected</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This way your log prints to the output you set it to, rather than stdout. This will help test if logs and errors are actually printing correctly ^_^</p>
 <p>That&rsquo;s about all the neat testing stuff I&rsquo;ve been finding out lately. Hope you had some fun reading it!</p>
       </div></div>
 

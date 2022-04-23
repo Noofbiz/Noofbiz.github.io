@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>2018</copyright>
-    <lastBuildDate>Sun, 25 Oct 2020 20:57:37 -0400</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Apr 2022 13:47:24 -0400</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TOMARS</title>
+      <link>/post/tomars/</link>
+      <pubDate>Sat, 23 Apr 2022 13:47:24 -0400</pubDate>
+      
+      <guid>/post/tomars/</guid>
+      <description>I&amp;rsquo;ve had an idea for decades now bouncing around in my head. I loved everything put out on MS Paint Adventures, from Bard&amp;rsquo;s tale to Homestuck. I liked the idea of readers having an influence on what happens next in the story; that the author would have to adjust and adapt the story based on the user input. Kinda like a real-time democratic choose your own adventure book. I want to make something like that, but inside a video game.</description>
+    </item>
+    
     <item>
       <title>Creating A Game In Pure Go</title>
       <link>/post/gameinpurego/</link>

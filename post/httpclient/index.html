@@ -173,28 +173,28 @@ and I made a <a href="https://ide.c9.io/noofbiz/http-client">c9</a> for it as we
 <p>First off, go has an amazing http package in its standard library, so this would be too easy
 if we were allowed to utilize those. I&rsquo;ll start from there and kind of work backwards to see how
 it should work at the end of the day.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
-	<span style="color:#e6db74">&#34;net/http&#34;</span>
-)
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">resp</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Response</span>
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;http://httpbin.org/get&#34;</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Unable to GET. %v\n&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> []<span style="color:#66d9ef">byte</span>
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Malformed response body. %v\n&#34;</span>, <span style="color:#a6e22e">err</span>)
-	}
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s\n&#34;</span>, <span style="color:#a6e22e">b</span>)
-}
-</code></pre></div><p>So, this is super simple and against the rules! However, it does do some neat things that
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;io/ioutil&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;net/http&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">resp</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Response</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;http://httpbin.org/get&#34;</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Unable to GET. %v\n&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> []<span style="color:#66d9ef">byte</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">ioutil</span>.<span style="color:#a6e22e">ReadAll</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Body</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Malformed response body. %v\n&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s\n&#34;</span>, <span style="color:#a6e22e">b</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, this is super simple and against the rules! However, it does do some neat things that
 will be useful later. It forms an http Request, which is what the client sends from itself
 to the server. It essentially tells the server that it wants to tell it something. Then the
 server reads the request and sends the client back a response. This is essentially how a
@@ -203,29 +203,29 @@ the browser back the web page for it to display for the user.</p>
 <p>To actually learn something about http clients,
 I&rsquo;m going to limit myself to just the net.Dial to create the connections, then do Read/Write on
 the connections themselves from there.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// PrintBody sends a generic GET request to the server at url and prints
-</span><span style="color:#75715e">// the body of the response to std Out
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">PrintBody</span>(<span style="color:#a6e22e">url</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
-	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">url</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-	}
-
-	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#e6db74">&#34;GET / HTTP/1.0\r\n\r\n&#34;</span>))
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-	}
-
-	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bufio</span>.<span style="color:#a6e22e">NewReader</span>(<span style="color:#a6e22e">conn</span>).<span style="color:#a6e22e">ReadString</span>(<span style="color:#e6db74">&#39;\n&#39;</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-	}
-
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">resp</span>)
-
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
-}
-</code></pre></div><p>So, now I&rsquo;ve got a start! The level for this library is around using net.Dial
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// PrintBody sends a generic GET request to the server at url and prints
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// the body of the response to std Out
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">PrintBody</span>(<span style="color:#a6e22e">url</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#a6e22e">url</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#e6db74">&#34;GET / HTTP/1.0\r\n\r\n&#34;</span>))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bufio</span>.<span style="color:#a6e22e">NewReader</span>(<span style="color:#a6e22e">conn</span>).<span style="color:#a6e22e">ReadString</span>(<span style="color:#e6db74">&#39;\n&#39;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">resp</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So, now I&rsquo;ve got a start! The level for this library is around using net.Dial
 and <code>net.Conn</code>. The Dial opens a connection with the server, and returs it as
 a <code>net.Conn</code>. By writing to Conn, you&rsquo;re sending out a request. You can then read
 the server&rsquo;s response by reading from the Conn.</p>
@@ -240,66 +240,66 @@ request.</p>
 <p>Alright, let&rsquo;s start with parsing those urls. Most people will expect to put in a typical
 url, so we want it to be of the form http[s]://[www].hostname.ext/file/path/stuff[:port]
 where [] denotes optional parameters. I created a new page to handle this url.go</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">httpClient</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;errors&#34;</span>
-	<span style="color:#e6db74">&#34;strings&#34;</span>
-)
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">protocol</span> <span style="color:#66d9ef">uint</span>
-
-<span style="color:#66d9ef">const</span> (
-	<span style="color:#a6e22e">protocolhttp</span> <span style="color:#a6e22e">protocol</span> = <span style="color:#66d9ef">iota</span>
-	<span style="color:#a6e22e">protocolhttps</span>
-	<span style="color:#a6e22e">protocolUnsupported</span>
-)
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">url</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">scheme</span>   <span style="color:#a6e22e">protocol</span>
-	<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">path</span>     <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">port</span>     <span style="color:#66d9ef">string</span>
-}
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">parseURL</span>(<span style="color:#a6e22e">in</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">url</span>, <span style="color:#66d9ef">error</span>) {
-	<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>{}
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasPrefix</span>(<span style="color:#a6e22e">in</span>, <span style="color:#e6db74">&#34;http://&#34;</span>) {
-		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolhttp</span>
-		<span style="color:#a6e22e">in</span> = <span style="color:#a6e22e">in</span>[<span style="color:#ae81ff">7</span>:]
-	} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasPrefix</span>(<span style="color:#a6e22e">in</span>, <span style="color:#e6db74">&#34;https://&#34;</span>) {
-		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolhttps</span>
-		<span style="color:#a6e22e">in</span> = <span style="color:#a6e22e">in</span>[<span style="color:#ae81ff">8</span>:]
-	} <span style="color:#66d9ef">else</span> {
-		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolUnsupported</span>
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;unsupported http protocol&#34;</span>)
-	}
-
-	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">in</span>) {
-		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;/&#39;</span> {
-			<span style="color:#66d9ef">break</span>
-		}
-		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">hostname</span> <span style="color:#f92672">+=</span> string(<span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>])
-		<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
-	}
-
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">in</span>) {
-		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:&#39;</span> {
-			<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> = <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:]
-			<span style="color:#66d9ef">break</span>
-		}
-		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">path</span> <span style="color:#f92672">+=</span> string(<span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>])
-		<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
-	}
-
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
-		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> = <span style="color:#e6db74">&#34;80&#34;</span>
-	}
-
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">u</span>, <span style="color:#66d9ef">nil</span>
-}
-</code></pre></div><p>All this really does is loop through the passed url and separate out the protocol,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">httpClient</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;errors&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;strings&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">protocol</span> <span style="color:#66d9ef">uint</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">protocolhttp</span> <span style="color:#a6e22e">protocol</span> = <span style="color:#66d9ef">iota</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">protocolhttps</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">protocolUnsupported</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">url</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">scheme</span>   <span style="color:#a6e22e">protocol</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">hostname</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">path</span>     <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">port</span>     <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">parseURL</span>(<span style="color:#a6e22e">in</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">url</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>{}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasPrefix</span>(<span style="color:#a6e22e">in</span>, <span style="color:#e6db74">&#34;http://&#34;</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolhttp</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">in</span> = <span style="color:#a6e22e">in</span>[<span style="color:#ae81ff">7</span>:]
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasPrefix</span>(<span style="color:#a6e22e">in</span>, <span style="color:#e6db74">&#34;https://&#34;</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolhttps</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">in</span> = <span style="color:#a6e22e">in</span>[<span style="color:#ae81ff">8</span>:]
+</span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">scheme</span> = <span style="color:#a6e22e">protocolUnsupported</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;unsupported http protocol&#34;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">in</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;/&#39;</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">hostname</span> <span style="color:#f92672">+=</span> string(<span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>])
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">in</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;:&#39;</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> = <span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>:]
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">path</span> <span style="color:#f92672">+=</span> string(<span style="color:#a6e22e">in</span>[<span style="color:#a6e22e">i</span>])
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span> = <span style="color:#e6db74">&#34;80&#34;</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">u</span>, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>All this really does is loop through the passed url and separate out the protocol,
 a file path, and port number. If the port number isn&rsquo;t passed, it assumes it&rsquo;s
 port 80, which is the standard web server port. I&rsquo;ll probably have to parse the file path
 further down the road for Post and/or Put requests, but that&rsquo;ll look pretty similar,
@@ -310,86 +310,86 @@ everything.</p>
 <p>Now, to create the proper headers. <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">MDN</a>
 has a great list of the header file bits and what they do. Using ones relevent to
 my GET request, my function ends up like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">PrintBody</span>(<span style="color:#a6e22e">url</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
-	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">parseURL</span>(<span style="color:#a6e22e">url</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-	}
-
-	<span style="color:#a6e22e">header</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;GET &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">path</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; HTTP/1.1\r\n&#34;</span>
-	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Host: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">hostname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\r\n&#34;</span>
-	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;User-Agent: Noofbizzle\r\n&#34;</span>
-	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Accept: text/html\r\n&#34;</span>
-	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Accept-Language: en-us\r\n&#34;</span>
-	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Accept-Encoding: gzip,deflate\r\n&#34;</span>
-	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Accept-Charset: ISO-8859-1,utf-8\r\n\r\n&#34;</span>
-
-	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#e6db74">&#34;[&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">hostname</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;]:&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-	}
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Close</span>()
-
-	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#a6e22e">header</span>))
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-	}
-
-	<span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bufio</span>.<span style="color:#a6e22e">NewReader</span>(<span style="color:#a6e22e">conn</span>)
-	<span style="color:#66d9ef">for</span> {
-		<span style="color:#a6e22e">line</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">ReadString</span>(<span style="color:#e6db74">&#39;\n&#39;</span>)
-		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">EOF</span> {
-			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#a6e22e">line</span>)
-			<span style="color:#66d9ef">break</span>
-		}
-		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-		}
-
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#a6e22e">line</span>)
-	}
-
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
-}
-</code></pre></div><p>When I run it like this, it works! The server accepts my request and sends me the
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">PrintBody</span>(<span style="color:#a6e22e">url</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">parseURL</span>(<span style="color:#a6e22e">url</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">header</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;GET &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">path</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; HTTP/1.1\r\n&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Host: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">hostname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\r\n&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;User-Agent: Noofbizzle\r\n&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Accept: text/html\r\n&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Accept-Language: en-us\r\n&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Accept-Encoding: gzip,deflate\r\n&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">header</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;Accept-Charset: ISO-8859-1,utf-8\r\n\r\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;tcp&#34;</span>, <span style="color:#e6db74">&#34;[&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">hostname</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;]:&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">port</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Write</span>([]byte(<span style="color:#a6e22e">header</span>))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bufio</span>.<span style="color:#a6e22e">NewReader</span>(<span style="color:#a6e22e">conn</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">line</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">ReadString</span>(<span style="color:#e6db74">&#39;\n&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">EOF</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#a6e22e">line</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#a6e22e">line</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>When I run it like this, it works! The server accepts my request and sends me the
 proper response. However, it never breaks out of that loop. Unlike in file io,
 a server response never actually sends an EOF. It keeps the connection alive
 and waits for further input. To fix this, I&rsquo;ll have to actually parse the header
 of the response, find out the content length, and use that in my reader to properly
 handle the response.</p>
 <p>The for loop now looks like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">	<span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bufio</span>.<span style="color:#a6e22e">NewReader</span>(<span style="color:#a6e22e">conn</span>)
-	<span style="color:#a6e22e">respHeader</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>)
-	<span style="color:#75715e">// get the header
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> {
-		<span style="color:#a6e22e">line</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">ReadString</span>(<span style="color:#e6db74">&#39;\n&#39;</span>)
-		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-		}
-		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">line</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;\r\n&#34;</span> {
-			<span style="color:#66d9ef">break</span> <span style="color:#75715e">//header ends with an empty line
-</span><span style="color:#75715e"></span>		}
-		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasPrefix</span>(<span style="color:#a6e22e">line</span>, <span style="color:#e6db74">&#34;HTTP/&#34;</span>) {
-			<span style="color:#a6e22e">respHeader</span>[<span style="color:#e6db74">&#34;first&#34;</span>] = <span style="color:#a6e22e">line</span>
-			<span style="color:#66d9ef">continue</span>
-		}
-		<span style="color:#a6e22e">nv</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Split</span>(<span style="color:#a6e22e">line</span>, <span style="color:#e6db74">&#34;: &#34;</span>)
-		<span style="color:#a6e22e">respHeader</span>[<span style="color:#a6e22e">nv</span>[<span style="color:#ae81ff">0</span>]] = <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">TrimSuffix</span>(<span style="color:#a6e22e">nv</span>[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;\r\n&#34;</span>)
-	}
-
-	<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Atoi</span>(<span style="color:#a6e22e">respHeader</span>[<span style="color:#e6db74">&#34;Content-Length&#34;</span>])
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-	}
-
-	<span style="color:#a6e22e">buf</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">byte</span>, <span style="color:#a6e22e">n</span>)
-	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">buf</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-	}
-
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#a6e22e">buf</span>)
-</code></pre></div><p>This now properly returns the body when you make a GET request in the current URL! That&rsquo;s
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>	<span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bufio</span>.<span style="color:#a6e22e">NewReader</span>(<span style="color:#a6e22e">conn</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">respHeader</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// get the header
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">line</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">ReadString</span>(<span style="color:#e6db74">&#39;\n&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">line</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;\r\n&#34;</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">break</span> <span style="color:#75715e">//header ends with an empty line
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">HasPrefix</span>(<span style="color:#a6e22e">line</span>, <span style="color:#e6db74">&#34;HTTP/&#34;</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">respHeader</span>[<span style="color:#e6db74">&#34;first&#34;</span>] = <span style="color:#a6e22e">line</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">nv</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Split</span>(<span style="color:#a6e22e">line</span>, <span style="color:#e6db74">&#34;: &#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">respHeader</span>[<span style="color:#a6e22e">nv</span>[<span style="color:#ae81ff">0</span>]] = <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">TrimSuffix</span>(<span style="color:#a6e22e">nv</span>[<span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#34;\r\n&#34;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Atoi</span>(<span style="color:#a6e22e">respHeader</span>[<span style="color:#e6db74">&#34;Content-Length&#34;</span>])
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">buf</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">byte</span>, <span style="color:#a6e22e">n</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">buf</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;%s&#34;</span>, <span style="color:#a6e22e">buf</span>)
+</span></span></code></pre></div><p>This now properly returns the body when you make a GET request in the current URL! That&rsquo;s
 about how an http GET client works! I&rsquo;ll probably add the bonus suff later down the road,
 so keep a look out for that! Remember, the full code is available on
 <a href="https://github.com/Noofbiz/httpClient">github!</a> Feel free to have a look!</p>
