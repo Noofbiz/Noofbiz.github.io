@@ -5,73 +5,65 @@
     <link>/post/</link>
     <description>Recent content in Posts on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <copyright>2018</copyright>
-    <lastBuildDate>Sat, 23 Apr 2022 13:47:24 -0400</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Jan 2024 23:13:51 -0500</lastBuildDate>
+    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Starting</title>
+      <link>/post/starting/</link>
+      <pubDate>Fri, 05 Jan 2024 23:13:51 -0500</pubDate>
+      <guid>/post/starting/</guid>
+      <description>Hello world!&#xA;I&amp;rsquo;m back! And going to try to start blogging about whatever I feel like, when I feel like it. (At least once a day, about the day) So, let&amp;rsquo;s start with today!&#xA;P.S. I should take pictures to put on here maybe?&#xA;Walmart trip 1 So, after dropping Grayson off at school, I went to the store to pick up a couple things. Food and such. Walmart has gotten way more crowded.</description>
+    </item>
     <item>
       <title>TOMARS</title>
       <link>/post/tomars/</link>
       <pubDate>Sat, 23 Apr 2022 13:47:24 -0400</pubDate>
-      
       <guid>/post/tomars/</guid>
       <description>I&amp;rsquo;ve had an idea for decades now bouncing around in my head. I loved everything put out on MS Paint Adventures, from Bard&amp;rsquo;s tale to Homestuck. I liked the idea of readers having an influence on what happens next in the story; that the author would have to adjust and adapt the story based on the user input. Kinda like a real-time democratic choose your own adventure book. I want to make something like that, but inside a video game.</description>
     </item>
-    
     <item>
       <title>Creating A Game In Pure Go</title>
       <link>/post/gameinpurego/</link>
       <pubDate>Sun, 25 Oct 2020 20:57:37 -0400</pubDate>
-      
       <guid>/post/gameinpurego/</guid>
-      <description>I&amp;rsquo;m going to participate in the Github Game-Off this year! But with some interesting aspects, to make it more fun! This time, I&amp;rsquo;m going to build the whole game in Go!
-But Jerry! You already maintain a pretty awesome game engine in go! Why don&amp;rsquo;t you just use that!
-You misunderstand! I&amp;rsquo;m going to make EVERYTHING in go. Of course, engo will be there! But I&amp;rsquo;m going to create all the textures using gg, programatically!</description>
+      <description>I&amp;rsquo;m going to participate in the Github Game-Off this year! But with some interesting aspects, to make it more fun! This time, I&amp;rsquo;m going to build the whole game in Go!&#xA;But Jerry! You already maintain a pretty awesome game engine in go! Why don&amp;rsquo;t you just use that!&#xA;You misunderstand! I&amp;rsquo;m going to make EVERYTHING in go. Of course, engo will be there! But I&amp;rsquo;m going to create all the textures using gg, programatically!</description>
     </item>
-    
     <item>
       <title>Duck</title>
       <link>/post/duck/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
-      
       <guid>/post/duck/</guid>
       <description>&lt;p&gt;Today I ate a duck.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>JsAnimateImages</title>
       <link>/post/jsanimateimages/</link>
       <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
-      
       <guid>/post/jsanimateimages/</guid>
       <description>&lt;p&gt;Animate an html image element with a little js and a webworker!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Building my own http Client</title>
       <link>/post/httpclient/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
-      
       <guid>/post/httpclient/</guid>
       <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Engo Testing</title>
       <link>/post/engotesting/</link>
       <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
       <guid>/post/engotesting/</guid>
       <description>&lt;p&gt;Testing Systems for &lt;code&gt;engo&lt;/code&gt;&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Helloworld</title>
       <link>/post/helloworld/</link>
       <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
-      
       <guid>/post/helloworld/</guid>
       <description>&lt;p&gt;Hello everyone!&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

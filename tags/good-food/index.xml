@@ -5,17 +5,16 @@
     <link>/tags/good-food/</link>
     <description>Recent content in good food on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <copyright>2018</copyright>
-    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate><atom:link href="/tags/good-food/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 May 2019 19:25:14 -0400</lastBuildDate>
+    <atom:link href="/tags/good-food/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Duck</title>
       <link>/post/duck/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
-      
       <guid>/post/duck/</guid>
       <description>&lt;p&gt;Today I ate a duck.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

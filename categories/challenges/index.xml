@@ -5,17 +5,16 @@
     <link>/categories/challenges/</link>
     <description>Recent content in Challenges on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <copyright>2018</copyright>
-    <lastBuildDate>Mon, 26 Feb 2018 16:39:27 +0000</lastBuildDate><atom:link href="/categories/challenges/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Feb 2018 16:39:27 +0000</lastBuildDate>
+    <atom:link href="/categories/challenges/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building my own http Client</title>
       <link>/post/httpclient/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
-      
       <guid>/post/httpclient/</guid>
       <description>&lt;p&gt;Building an http client from scratch!&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

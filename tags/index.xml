@@ -5,170 +5,149 @@
     <link>/tags/</link>
     <description>Recent content in Tags on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <copyright>2018</copyright>
-    <lastBuildDate>Sat, 23 Apr 2022 13:47:24 -0400</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Jan 2024 23:13:51 -0500</lastBuildDate>
+    <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>new year</title>
+      <link>/tags/new-year/</link>
+      <pubDate>Fri, 05 Jan 2024 23:13:51 -0500</pubDate>
+      <guid>/tags/new-year/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>start blogging again</title>
+      <link>/tags/start-blogging-again/</link>
+      <pubDate>Fri, 05 Jan 2024 23:13:51 -0500</pubDate>
+      <guid>/tags/start-blogging-again/</guid>
+      <description></description>
+    </item>
     <item>
       <title>marsbound</title>
       <link>/tags/marsbound/</link>
       <pubDate>Sat, 23 Apr 2022 13:47:24 -0400</pubDate>
-      
       <guid>/tags/marsbound/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>starting</title>
       <link>/tags/starting/</link>
       <pubDate>Sat, 23 Apr 2022 13:47:24 -0400</pubDate>
-      
       <guid>/tags/starting/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>game</title>
       <link>/tags/game/</link>
       <pubDate>Sun, 25 Oct 2020 20:57:37 -0400</pubDate>
-      
       <guid>/tags/game/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>game jam</title>
       <link>/tags/game-jam/</link>
       <pubDate>Sun, 25 Oct 2020 20:57:37 -0400</pubDate>
-      
       <guid>/tags/game-jam/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>go</title>
       <link>/tags/go/</link>
       <pubDate>Sun, 25 Oct 2020 20:57:37 -0400</pubDate>
-      
       <guid>/tags/go/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>golang</title>
       <link>/tags/golang/</link>
       <pubDate>Sun, 25 Oct 2020 20:57:37 -0400</pubDate>
-      
       <guid>/tags/golang/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>duck</title>
       <link>/tags/duck/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
-      
       <guid>/tags/duck/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>good food</title>
       <link>/tags/good-food/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
-      
       <guid>/tags/good-food/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>animation</title>
       <link>/tags/animation/</link>
       <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
-      
       <guid>/tags/animation/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>js</title>
       <link>/tags/js/</link>
       <pubDate>Wed, 23 May 2018 10:16:06 -0400</pubDate>
-      
       <guid>/tags/js/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>challenge</title>
       <link>/tags/challenge/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
-      
       <guid>/tags/challenge/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>dailyprogrammer</title>
       <link>/tags/dailyprogrammer/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
-      
       <guid>/tags/dailyprogrammer/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>web</title>
       <link>/tags/web/</link>
       <pubDate>Mon, 26 Feb 2018 16:39:27 +0000</pubDate>
-      
       <guid>/tags/web/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ecs</title>
       <link>/tags/ecs/</link>
       <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
       <guid>/tags/ecs/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>engo</title>
       <link>/tags/engo/</link>
       <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
       <guid>/tags/engo/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>testing</title>
       <link>/tags/testing/</link>
       <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
       <guid>/tags/testing/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>first</title>
       <link>/tags/first/</link>
       <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
-      
       <guid>/tags/first/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>intro</title>
       <link>/tags/intro/</link>
       <pubDate>Fri, 16 Feb 2018 16:32:37 +0000</pubDate>
-      
       <guid>/tags/intro/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

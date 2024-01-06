@@ -5,17 +5,16 @@
     <link>/tags/engo/</link>
     <description>Recent content in engo on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <copyright>2018</copyright>
-    <lastBuildDate>Mon, 19 Feb 2018 18:02:22 +0000</lastBuildDate><atom:link href="/tags/engo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Feb 2018 18:02:22 +0000</lastBuildDate>
+    <atom:link href="/tags/engo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Engo Testing</title>
       <link>/post/engotesting/</link>
       <pubDate>Mon, 19 Feb 2018 18:02:22 +0000</pubDate>
-      
       <guid>/post/engotesting/</guid>
       <description>&lt;p&gt;Testing Systems for &lt;code&gt;engo&lt;/code&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

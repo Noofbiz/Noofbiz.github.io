@@ -5,28 +5,30 @@
     <link>/categories/just-me/</link>
     <description>Recent content in just me on Jerry Caligiure</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <copyright>2018</copyright>
-    <lastBuildDate>Sun, 25 Oct 2020 20:57:37 -0400</lastBuildDate><atom:link href="/categories/just-me/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Jan 2024 23:13:51 -0500</lastBuildDate>
+    <atom:link href="/categories/just-me/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Starting</title>
+      <link>/post/starting/</link>
+      <pubDate>Fri, 05 Jan 2024 23:13:51 -0500</pubDate>
+      <guid>/post/starting/</guid>
+      <description>Hello world!&#xA;I&amp;rsquo;m back! And going to try to start blogging about whatever I feel like, when I feel like it. (At least once a day, about the day) So, let&amp;rsquo;s start with today!&#xA;P.S. I should take pictures to put on here maybe?&#xA;Walmart trip 1 So, after dropping Grayson off at school, I went to the store to pick up a couple things. Food and such. Walmart has gotten way more crowded.</description>
+    </item>
     <item>
       <title>Creating A Game In Pure Go</title>
       <link>/post/gameinpurego/</link>
       <pubDate>Sun, 25 Oct 2020 20:57:37 -0400</pubDate>
-      
       <guid>/post/gameinpurego/</guid>
-      <description>I&amp;rsquo;m going to participate in the Github Game-Off this year! But with some interesting aspects, to make it more fun! This time, I&amp;rsquo;m going to build the whole game in Go!
-But Jerry! You already maintain a pretty awesome game engine in go! Why don&amp;rsquo;t you just use that!
-You misunderstand! I&amp;rsquo;m going to make EVERYTHING in go. Of course, engo will be there! But I&amp;rsquo;m going to create all the textures using gg, programatically!</description>
+      <description>I&amp;rsquo;m going to participate in the Github Game-Off this year! But with some interesting aspects, to make it more fun! This time, I&amp;rsquo;m going to build the whole game in Go!&#xA;But Jerry! You already maintain a pretty awesome game engine in go! Why don&amp;rsquo;t you just use that!&#xA;You misunderstand! I&amp;rsquo;m going to make EVERYTHING in go. Of course, engo will be there! But I&amp;rsquo;m going to create all the textures using gg, programatically!</description>
     </item>
-    
     <item>
       <title>Duck</title>
       <link>/post/duck/</link>
       <pubDate>Wed, 08 May 2019 19:25:14 -0400</pubDate>
-      
       <guid>/post/duck/</guid>
       <description>&lt;p&gt;Today I ate a duck.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
